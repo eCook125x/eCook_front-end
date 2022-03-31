@@ -8,7 +8,7 @@ function About() {
         <>
           
             <div className="body">
-                <h1> WECLOME About </h1>
+                <h1> WECLOME About bmooo</h1>
                 <Button type="primary">Primary</Button>
        
      </div>
