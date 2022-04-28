@@ -1,19 +1,22 @@
 import React from "react"
 import './Home.css'
-import { Button } from 'antd';
-import Appbar from "../../components/Appbar/Appbar";
+import Appbar from "../../components/Appbar/Appbar/Appbar";
+
+
 function Home() {
 
     return (
         <>
             <Appbar />
+
             <div className="body">
-                <h1> WECLOME eCook </h1>
-                <Button type="primary">Primary</Button>
-       
-     </div>
-       
- </>
+                <h1> </h1>
+              
+           
+                <button type="button" class="btn btn-primary">Primary</button>
+            </div>
+
+        </>
 
     );
 }
