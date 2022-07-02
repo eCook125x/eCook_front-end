@@ -49,7 +49,7 @@ function Login() {
                     <FormControlLabel control={<Checkbox />} label="保持登入" />
                 </FormGroup>
 
-                <Button variant="contained" sx={{ m: 3 }}>登入</Button>
+                <Button variant="contained" sx={{ m: 3 }} color="warning" href="/link">登入</Button>
 
                 <Typography variant="caption" display="block" gutterBottom align="center">
                     By continuing, you agree to our<br/>
