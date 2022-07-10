@@ -1,0 +1,13 @@
+.center {
+    justify-content: center;
+}
+
+.card {
+    background-color: #F5F5F5 !important;
+    border: none !important;
+    width: 250px;
+}
+
+.height {
+    height: 50px;
+}
