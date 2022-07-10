@@ -11,10 +11,6 @@ function Appbar() {
 
             <AppBar position="static" color="warning">
                 <Toolbar>
-
-
-
-
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         eCook
                     </Typography>
