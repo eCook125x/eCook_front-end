@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.orange {
+  color: #FF8527 !important;
+}
+.bg-orange {
+  background-color: #FF8527 !important;
+}

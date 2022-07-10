@@ -60,7 +60,7 @@ function Link() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="small" variant="contained" color="warning" disableElevation>
+                                    <Button size="small" variant="contained" color="warning" disableElevation href="/cookbook">
                                         開始料理
                                     </Button>
                                 </CardActions>
