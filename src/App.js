@@ -3,8 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home';
 import About from "./pages/About/About";
-import Login from "./pages/Login/Login";
-import Link from "./pages/Link/Link";
+import Login from "./pages/Login/login";
+import Link from "./pages/Link/link";
 import Cookbook from "./pages/Cookbook/Cookbook";
 import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
 import MealRecipes from "./pages/MealRecipes/MealRecipes";
