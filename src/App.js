@@ -3,9 +3,11 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home';
 import About from "./pages/About/About";
-import Login from "./pages/Login/login";
+import Login from "./pages/Login/Login";
 import Link from "./pages/Link/Link";
 import Cookbook from "./pages/Cookbook/Cookbook";
+import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
+import MealRecipes from "./pages/MealRecipes/MealRecipes";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
       <Routes>
 
         <Route path='/cookbook' element={<Cookbook />} />
+        <Route path='/cookbook/SweetAndSavory' element={<SweetAndSavory />} />
+        <Route path='/cookbook/SweetAndSavory/MealRecipes' element={<MealRecipes />} />
         
       </Routes>
     </Router>

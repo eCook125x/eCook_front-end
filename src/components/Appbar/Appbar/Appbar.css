@@ -1,0 +1,10 @@
+.bg-none {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+.bg-none > BottomNavigationAction{
+    color: white !important;
+}
+
+.white {
+    color: white !important;
+}

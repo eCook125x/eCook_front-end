@@ -9,6 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
+import image01 from '../../images/link/01.png';
+import image02 from '../../images/link/02.png';
+import image03 from '../../images/link/03.png';
+
 function Link() {
 
     return (
@@ -41,13 +45,13 @@ function Link() {
                             <Card 
                                 sx={{ textAlign: 'center' }} 
                                 elevation={0}
-                                className="card"
+                                className="card-link"
                             >
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"
-                                    height="140"
-                                    image="./Downloads/link-01.png"
+                                    height="200"
+                                    image={image01}
                                     alt="料理食譜"
                                     />
                                     <CardContent>
@@ -60,7 +64,7 @@ function Link() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="small" variant="contained" color="warning" disableElevation href="/cookbook">
+                                    <Button size="" variant="contained" color="warning" disableElevation href="/cookbook">
                                         開始料理
                                     </Button>
                                 </CardActions>
@@ -70,13 +74,13 @@ function Link() {
                             <Card 
                                 sx={{ textAlign: 'center' }} 
                                 elevation={0}
-                                className="card"
+                                className="card-link"
                             >
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"
-                                    height="140"
-                                    image="./Downloads/link-01.png"
+                                    height="200"
+                                    image={image02}
                                     alt="學習記錄"
                                     />
                                     <CardContent>
@@ -89,7 +93,7 @@ function Link() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="small" variant="contained" color="warning" disableElevation>
+                                    <Button size="" variant="contained" color="warning" disableElevation>
                                         前往記錄
                                     </Button>
                                 </CardActions>
@@ -99,13 +103,13 @@ function Link() {
                             <Card 
                                 sx={{ textAlign: 'center' }} 
                                 elevation={0}
-                                className="card"
+                                className="card-link"
                             >
                                 <CardActionArea>
                                     <CardMedia
                                     component="img"
-                                    height="140"
-                                    image="./Downloads/link-01.png"
+                                    height="200"
+                                    image={image03}
                                     alt="學習書籤"
                                     />
                                     <CardContent>
@@ -118,7 +122,7 @@ function Link() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="small" variant="contained" color="warning" disableElevation>
+                                    <Button size="" variant="contained" color="warning" disableElevation>
                                         查看書籤
                                     </Button>
                                 </CardActions>

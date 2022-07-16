@@ -1,111 +1,184 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-
-import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import React from "react"
 import './Cookbook.css'
+import Appbar from "../../components/Appbar/Appbar/Appbar";
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-const Cookbook = () => {
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { Button, CardActionArea, CardActions } from '@mui/material';
 
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+import { Link } from 'react-router-dom';
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+import image01 from '../../images/cookbook/01.png';
+import image02 from '../../images/cookbook/02.png';
+import image03 from '../../images/cookbook/03.png';
+import image04 from '../../images/cookbook/04.png';
+import image05 from '../../images/cookbook/05.png';
+import image06 from '../../images/cookbook/06.png';
 
-  return (
-    <AppBar position="static" className='bg-orange' enableColorOnDark>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-            <ArrowBackIosNewRoundedIcon/>
-            <Typography>
-                返回
-            </Typography>
+function Cookbook() {
 
-            <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'bold', m: 1 }}>
-                eCook
-            </Typography>
+    return (
+        <>
+            <Appbar />
 
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
-                    <MailIcon />
-                </Badge>
-                </IconButton>
-                <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-                >
-                <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
-                </Badge>
-                </IconButton>
+            <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
 
-                <BottomNavigation showLabels className='bg-none'>
-                    <BottomNavigationAction className='white' label="Recents" icon={<RestoreIcon />} />
-                    <BottomNavigationAction className='white' label="Favorites" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction className='white' label="Nearby" icon={<LocationOnIcon />} />
-                </BottomNavigation>
-            </Box>
+                spacing={0}
+                direction="column"
+                sx={{ alignItems: 'center', justifyContent: 'center' }}
+                height="100vh" display="flex" flexDirection="column"
+            >
+                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 1, p: 2 }}>
+                    食譜類別
+                </Typography>
 
-            <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-                >
-                {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                ))}
-                </Menu>
-            </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-};
-export default Cookbook;
+                <Box>
+                    <Grid 
+                        container 
+                        spacing={0}
+                        columns={{ xs: 12, sm: 12, md: 12 }}
+                        rowSpacing={3} 
+                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{ px:5 }}
+                    >
+                        <Grid item xs={4}>
+                            <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image01}
+                                    alt="定食套餐"
+                                    />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        定食套餐
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            
+                                <Card 
+                                    sx={{ textAlign: 'center' }} 
+                                    elevation={0} 
+                                    className="card" 
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <CardActionArea>
+                                        <Link to={'/Cookbook/SweetAndSavory'} color="inherit" underline="none">
+                                            <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={image02}
+                                            alt="甜鹹點"
+                                            />
+                                        </Link>
+                                    </CardActionArea>
+                                    <CardActions 
+                                        sx={{ textAlign: 'center' }} 
+                                        className="card" 
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
+                                            <Typography gutterBottom variant="h5" component="div">
+                                            甜鹹點
+                                            </Typography>
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image03}
+                                    alt="飲品"
+                                    />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        飲品
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image04}
+                                    alt="花果茶"
+                                    />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                    花果茶
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image05}
+                                    alt="季節限定"
+                                    />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                    季節限定
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
+                                <CardActionArea>
+                                    <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image06}
+                                    alt="其他類別"
+                                    />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                    其他類別
+                                    </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Box>
+
+            </Grid>
+
+        </>
+
+    );
+}
+
+export default Cookbook
