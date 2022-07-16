@@ -73,7 +73,7 @@ function TeamLR() {
                             </Box>
                         </CardContent>
                         <CardActions className="center">
-                            <Button variant="contained" style={{ backgroundColor: '#FF8527' }}>查看更多</Button>
+                            <Button variant="contained" style={{ backgroundColor: '#FF8527' }} href="/LearningRecord/TeamLR/TeamLR-Directions">查看更多</Button>
                         </CardActions>
                     </Card>     
                 </Grid>

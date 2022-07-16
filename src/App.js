@@ -10,6 +10,7 @@ import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
 import MealRecipes from "./pages/MealRecipes/MealRecipes";
 import LearningRecord from "./pages/LearningRecord/LearningRecord";
 import TeamLR from "./pages/TeamLR/TeamLR";
+import TeamLRDirections from "./pages/TeamLR-Directions/TeamLR-Directions";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
 
         <Route path='/LearningRecord' element={<LearningRecord />} />
         <Route path='/LearningRecord/TeamLR' element={<TeamLR />} />
+        <Route path='/LearningRecord/TeamLR/TeamLR-Directions' element={<TeamLRDirections />} />
         
       </Routes>
     </Router>
