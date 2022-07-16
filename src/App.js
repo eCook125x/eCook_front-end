@@ -8,6 +8,8 @@ import Link from "./pages/Link/Link";
 import Cookbook from "./pages/Cookbook/Cookbook";
 import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
 import MealRecipes from "./pages/MealRecipes/MealRecipes";
+import LearningRecord from "./pages/LearningRecord/LearningRecord";
+import TeamLR from "./pages/TeamLR/TeamLR";
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
         <Route path='/cookbook' element={<Cookbook />} />
         <Route path='/cookbook/SweetAndSavory' element={<SweetAndSavory />} />
         <Route path='/cookbook/SweetAndSavory/MealRecipes' element={<MealRecipes />} />
+        
+      </Routes>
+      <Routes>
+
+        <Route path='/LearningRecord' element={<LearningRecord />} />
+        <Route path='/LearningRecord/TeamLR' element={<TeamLR />} />
         
       </Routes>
     </Router>

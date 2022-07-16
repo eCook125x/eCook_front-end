@@ -93,7 +93,7 @@ function Link() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="" variant="contained" color="warning" disableElevation>
+                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord">
                                         前往記錄
                                     </Button>
                                 </CardActions>
