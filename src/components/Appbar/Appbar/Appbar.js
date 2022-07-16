@@ -38,7 +38,7 @@ const Appbar = () => {
     };
 
   return (
-    <AppBar position="static" className='bg-orange' enableColorOnDark style={{position: 'fixed'}}>
+    <AppBar position="static" className='bg-orange' enableColorOnDark style={{position: 'fixed', zIndex: 1500}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <ArrowBackIosNewRoundedIcon/>

@@ -1,0 +1,30 @@
+.bg {
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
+    padding: 30px;
+}
+.full-width {
+    width: 100%;
+}
+
+.step {
+    color: #FF8527 !important;
+    border-bottom: #828282 0.5px solid;
+}
+.list {
+    background-color: #F5F5F5 !important;;
+}
+
+.modal {
+    border-radius: 20px;
+}
+
+.radio {
+    margin-top: 9px;
+    margin-right: 15px;
+}
+
+.autocomplete {
+    margin-bottom: 15px;
+}
