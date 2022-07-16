@@ -1,0 +1,11 @@
+body {
+    background-color: #F2F2F2 !important;
+}
+
+.card-teamLR {
+    border-radius: 15px !important;
+}
+
+.center {
+    justify-content: center !important;
+}

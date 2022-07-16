@@ -1,0 +1,21 @@
+.bg-none {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+.bg-none > BottomNavigationAction{
+    color: white !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.card {
+    background-color: #fff !important;
+    border: none !important;
+    width: 100%;
+}
+
+.underline {
+    color: inherit !important;
+    text-decoration: none !important;
+}

@@ -2,12 +2,12 @@
     justify-content: center;
 }
 
-.card {
+.card-link {
     background-color: #F5F5F5 !important;
     border: none !important;
-    width: 250px;
+    width: 300px;
 }
 
 .height {
-    height: 50px;
+    height: 70px;
 }

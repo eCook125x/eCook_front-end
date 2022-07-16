@@ -1,8 +1,10 @@
 import React from "react"
+import './LearningRecord.css'
+import Appbar from "../../components/Appbar/Appbar/Appbar";
+
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import './Link.css'
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,12 +13,12 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 import image01 from '../../images/link/01.png';
 import image02 from '../../images/link/02.png';
-import image03 from '../../images/link/03.png';
 
-function Link() {
+function LearningRecord() {
 
     return (
         <>
+            <Appbar />
 
             <Grid
                 container
@@ -25,11 +27,11 @@ function Link() {
 
                 spacing={0}
                 direction="column"
-                style={{ minHeight: '100vh' }}
+                sx={{ alignItems: 'center', justifyContent: 'center' }}
+                height="100vh" display="flex" flexDirection="column"
             >
-                <Typography variant="h4" gutterBottom component="div" align="center" sx={{ fontWeight: 'bold', m: 1, p: 2 }}>
-                    <span className="orange">eCook</span><br/>
-                    高齡餐廚巧幫手
+                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 1, p: 2 }}>
+                學習記錄
                 </Typography>
 
                 <Box>
@@ -52,20 +54,20 @@ function Link() {
                                     component="img"
                                     height="200"
                                     image={image01}
-                                    alt="料理食譜"
+                                    alt="自我學習記錄"
                                     />
                                     <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        料理食譜
+                                    自我學習記錄
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" className="height">
-                                        工作場域的數位餐飲食譜，提供即時性的輔助學習，降低中高齡者就業的工作壓力。
+                                    記錄自己製作餐點的學習歷程，檢視自我的學習表現。
                                     </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="" variant="contained" color="warning" disableElevation href="/cookbook">
-                                        開始料理
+                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord/TeamLR">
+                                    開始記錄
                                     </Button>
                                 </CardActions>
                             </Card>
@@ -81,49 +83,20 @@ function Link() {
                                     component="img"
                                     height="200"
                                     image={image02}
-                                    alt="學習記錄"
+                                    alt="查閱團隊學習記錄"
                                     />
                                     <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        學習記錄
+                                    查閱團隊學習記錄
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" className="height">
-                                        串連自我學習記錄和團隊學習記錄，時刻檢視學習歷程。
+                                    查看團隊其他長輩的學習記錄，增進團隊互動。
                                     </Typography>
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord">
-                                        前往記錄
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                        <Grid item xs>
-                            <Card 
-                                sx={{ textAlign: 'center' }} 
-                                elevation={0}
-                                className="card-link"
-                            >
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="200"
-                                    image={image03}
-                                    alt="學習書籤"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        學習書籤
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" className="height">
-                                        為提供即時性的料理學習，可選擇想要加入的食譜內容，建立簡單且便利的食譜清單。
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="" variant="contained" color="warning" disableElevation>
-                                        查看書籤
+                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord/TeamLR">
+                                    查閱記錄
                                     </Button>
                                 </CardActions>
                             </Card>
@@ -132,10 +105,9 @@ function Link() {
                 </Box>
 
             </Grid>
-
         </>
 
     );
 }
 
-export default Link
+export default LearningRecord
