@@ -1,6 +1,6 @@
-body {
+/* body {
     background-color: #F2F2F2 !important;
-}
+} */
 
 .card-teamLR {
     border-radius: 15px !important;
@@ -8,4 +8,12 @@ body {
 
 .center {
     justify-content: center !important;
+}
+
+.upload {
+    background-color: #FD5631 !important;
+}
+.help {
+    background-color: #7B8292 !important;
+    width: 100% !important;
 }

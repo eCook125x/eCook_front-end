@@ -10,9 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+// import Badge from '@mui/material/Badge';
+// import MailIcon from '@mui/icons-material/Mail';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -52,7 +52,7 @@ const Appbar = () => {
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={4} color="error">
                     <MailIcon />
                 </Badge>
@@ -65,12 +65,14 @@ const Appbar = () => {
                 <Badge badgeContent={17} color="error">
                     <NotificationsIcon />
                 </Badge>
-                </IconButton>
+                </IconButton> */}
 
                 <BottomNavigation showLabels className='bg-none'>
-                    <BottomNavigationAction className='white' label="Recents" icon={<RestoreIcon />} />
-                    <BottomNavigationAction className='white' label="Favorites" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction className='white' label="Nearby" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction className='white' label="料理食譜" icon={<RestoreIcon />} />
+                    <BottomNavigationAction className='white' label="學習記錄" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction className='white' label="學習書籤" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction className='white' label="通知" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction className='white' label="館長" icon={<LocationOnIcon />} />
                 </BottomNavigation>
             </Box>
 
