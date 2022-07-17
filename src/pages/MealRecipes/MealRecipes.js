@@ -20,7 +20,7 @@ import image09 from '../../images/MealRecipes/09.png';
 import image10 from '../../images/MealRecipes/10.png';
 import image11 from '../../images/MealRecipes/11.png';
 import image12 from '../../images/MealRecipes/12.png';
-import image13 from '../../images/MealRecipes/13.png';
+// import image13 from '../../images/MealRecipes/13.png';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -49,11 +49,13 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('餅乾底', '', ''),
+  createData('已烤好的塔殼', '4個', 'O'),
+  createData('杏鮑菇', '400克', 'O'),
+  createData('白味噌', '75克', 'O'),
+  createData('奶蛋液', '', ''),
+  createData('蛋', '4顆', 'O'),
+  createData('鮮奶油', '100毫升', 'O'),
 ];
 
 const style = {
@@ -84,6 +86,24 @@ function MealRecipes(props) {
     };
     const handleClose = () => {
         setOpen(false);
+    };
+
+
+    const [setImage] = React.useState(null);
+
+    const onImageChange = (e) => {
+        console.log("file", e.target.files[0]);
+        let file = e.target.files[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = _handleReaderLoaded
+        reader.readAsBinaryString(file)
+        }
+    };
+
+    const _handleReaderLoaded = (readerEvt) => {
+        let binaryString = readerEvt.target.result;
+        setImage(btoa(binaryString))
     };
 
     return (
@@ -153,19 +173,31 @@ function MealRecipes(props) {
                             />
                         </Grid>
                         <Grid item xs={4}>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={image13}
-                                alt="定食套餐"
+                            {/* <input
+                                accept="image/*"
+                                style={{ display: 'none' }}
+                                id="raised-button-file"
+                                multiple
+                                type="file"
                             />
+                            <label htmlFor="raised-button-file">
+                            <Button variant="raised" component="span">
+                                <CardMedia
+                                    component="img"
+                                    height="auto"
+                                    image={image13}
+                                    alt="定食套餐"
+                                />
+                            </Button>
+                            </label>  */}
+                            <input type="file" onChange={onImageChange} className="filetype"  accept=".jepg,.png,.jpg"/>
                         </Grid>
                     </Grid>
 
                     <Grid container spacing={3}>
                         <Grid item xs={4}>
                             <Box textAlign='left'>
-                                <Button variant="contained" className="">取消</Button>
+                                <Button variant="outlined" className="grey">取消</Button>
                             </Box>
                         </Grid>
                         <Grid item xs={4}>
@@ -220,11 +252,9 @@ function MealRecipes(props) {
                                 }}
                             />
                             </TableCell>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                            <TableCell>已全部取得</TableCell>
+                            <TableCell align="right">&nbsp;</TableCell>
+                            <TableCell align="right">&nbsp;</TableCell>
                         </TableRow>
                         </TableHead>
 
@@ -250,8 +280,6 @@ function MealRecipes(props) {
                             </TableCell>
                             <TableCell align="right">{row.calories}</TableCell>
                             <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
@@ -407,7 +435,7 @@ function MealRecipes(props) {
 
                 <Box textAlign='center' sx={{ mb:4 }}>
                     <Button variant="contained" className="" style={{ backgroundColor: '#FF8527' }} onClick={handleOpen}>上傳自我學習記錄</Button>
-                </Box>
+                </Box><br/>
             </Box>
        
         </>

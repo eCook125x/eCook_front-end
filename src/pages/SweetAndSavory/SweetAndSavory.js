@@ -24,245 +24,249 @@ function SweetAndSavory() {
     return (
         <>
             <Appbar />
-          
-            <Grid
-                container
-                justifyContent="center"
-                alignItems="center"
 
-                spacing={0}
-                direction="column"
-                sx={{ alignItems: 'center', justifyContent: 'center', backgroundColor:'#F2F2F2' }}
-                height="100vh" display="flex" flexDirection="column"
-            >
-                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 1, p: 2 }}>
-                手作甜鹹點
+            <Box container sx={{ px:5, backgroundColor:'#F2F2F2' }}>
+                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 0, p: 3, pt:12 }}>
+                    手作甜鹹點
                 </Typography>
 
-                <Box>
-                    <Grid 
-                        container 
-                        spacing={0}
-                        columns={{ xs: 12, sm: 12, md: 12 }}
-                        rowSpacing={3} 
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        sx={{ px:5 }}
-                    >
-                        <Grid item xs={4}>
-                            <Card 
-                                sx={{ textAlign: 'center' }} 
-                                elevation={0} 
-                                className="card-sas" 
-                                justifyContent="center"
-                                alignItems="center"
-                            >
-                                <CardActionArea>
-                                    <Link to={'/Cookbook/SweetAndSavory/MealRecipes'} color="inherit" underline="none">
-                                        <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={image01}
-                                        alt="味噌蔬食鹹派"
-                                        />
-                                    </Link>
-                                </CardActionArea>
-                                <CardActions 
+                <Grid
+                    container
+
+                    spacing={0}
+                    direction="column"
+                    height="auto" display="flex" flexDirection="column"
+                >
+                    <Box>
+                        <Grid 
+                            container 
+                            spacing={0}
+                            columns={{ xs: 12, sm: 12, md: 12 }}
+                            rowSpacing={3} 
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            sx={{ px:5 }}
+                        >
+                            <Grid item xs={4}>
+                                <Card 
                                     sx={{ textAlign: 'center' }} 
-                                    className="" 
+                                    elevation={0} 
+                                    className="card-sas" 
                                     justifyContent="center"
                                     alignItems="center"
                                 >
-                                    <Grid 
-                                        container
-                                        direction="row"
+                                    <CardActionArea>
+                                        <Link to={'/Cookbook/SweetAndSavory/MealRecipes'} color="inherit" underline="none">
+                                            <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={image01}
+                                            alt="味噌蔬食鹹派"
+                                            />
+                                        </Link>
+                                    </CardActionArea>
+                                    <CardActions 
+                                        sx={{ textAlign: 'center' }} 
+                                        className="" 
                                         justifyContent="center"
                                         alignItems="center"
                                     >
-                                        <Grid item sx={12}>
-                                            <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory/MealRecipes">
-                                                <Typography gutterBottom variant="h5" component="div">
-                                                味噌蔬食鹹派
-                                                </Typography>
-                                            </Button>
+                                        <Grid 
+                                            container
+                                            direction="row"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                        >
+                                            <Grid item sx={12}>
+                                                <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory/MealRecipes">
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                    味噌蔬食鹹派
+                                                    </Typography>
+                                                </Button>
+                                            </Grid>
+                                            <Grid item sx={12}>
+                                                <Box sx={{ width: '250px' }}>
+                                                    <Grid 
+                                                        container
+                                                        direction="row"
+                                                        justifyContent="center"
+                                                        alignItems="center"
+                                                    >
+                                                        <Grid item xs={6}>
+                                                            <Button variant="text" className="underline" href="#">
+                                                                <AccessTimeRoundedIcon className="orange"/>
+                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                40 分鐘
+                                                                </Typography>
+                                                            </Button>
+                                                        </Grid>
+                                                        <Grid item xs={6}>
+                                                            <Button variant="text" className="underline" href="#">
+                                                                <BookmarkBorderRoundedIcon className="orange"/>
+                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                儲存書籤
+                                                                </Typography>
+                                                            </Button>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Box>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item sx={12}>
-                                            <Box sx={{ width: '250px' }}>
-                                                <Grid 
-                                                    container
-                                                    direction="row"
-                                                    justifyContent="center"
-                                                    alignItems="center"
-                                                >
-                                                    <Grid item xs={6}>
-                                                        <Button variant="text" className="underline" href="#">
-                                                            <AccessTimeRoundedIcon className="orange"/>
-                                                            <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                            40 分鐘
-                                                            </Typography>
-                                                        </Button>
-                                                    </Grid>
-                                                    <Grid item xs={6}>
-                                                        <Button variant="text" className="underline" href="#">
-                                                            <BookmarkBorderRoundedIcon className="orange"/>
-                                                            <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                            儲存書籤
-                                                            </Typography>
-                                                        </Button>
-                                                    </Grid>
+                                    </CardActions>
+                                </Card>
+                            
+                            </Grid>
+                            <Grid item xs={4}>
+                                
+                                    <Card 
+                                        sx={{ textAlign: 'center' }} 
+                                        elevation={0} 
+                                        className="card-sas" 
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <CardActionArea>
+                                            <Link to={'#'} color="inherit" underline="none">
+                                                <CardMedia
+                                                component="img"
+                                                height="200"
+                                                image={image02}
+                                                alt="原味提拉米蘇"
+                                                />
+                                            </Link>
+                                        </CardActionArea>
+                                        <CardActions 
+                                            sx={{ textAlign: 'center' }} 
+                                            className="" 
+                                            justifyContent="center"
+                                            alignItems="center"
+                                        >
+                                            <Grid 
+                                                container
+                                                direction="row"
+                                                justifyContent="center"
+                                                alignItems="center"
+                                            >
+                                                <Grid item sx={12}>
+                                                    <Button variant="text" className="underline" href="#">
+                                                        <Typography gutterBottom variant="h5" component="div">
+                                                        原味提拉米蘇
+                                                        </Typography>
+                                                    </Button>
                                                 </Grid>
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
-                                </CardActions>
-                            </Card>
-                        
-                        </Grid>
-                        <Grid item xs={4}>
-                            
-                                <Card 
-                                    sx={{ textAlign: 'center' }} 
-                                    elevation={0} 
-                                    className="card-sas" 
-                                    justifyContent="center"
-                                    alignItems="center"
-                                >
-                                    <CardActionArea>
-                                        <Link to={'#'} color="inherit" underline="none">
-                                            <CardMedia
-                                            component="img"
-                                            height="200"
-                                            image={image02}
-                                            alt="原味提拉米蘇"
-                                            />
-                                        </Link>
-                                    </CardActionArea>
-                                    <CardActions 
+                                                <Grid item sx={12}>
+                                                    <Box sx={{ width: '250px' }}>
+                                                        <Grid 
+                                                            container
+                                                            direction="row"
+                                                            justifyContent="center"
+                                                            alignItems="center"
+                                                        >
+                                                            <Grid item xs={6}>
+                                                                <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
+                                                                    <AccessTimeRoundedIcon className="orange"/>
+                                                                    <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                    40 分鐘
+                                                                    </Typography>
+                                                                </Button>
+                                                            </Grid>
+                                                            <Grid item xs={6}>
+                                                                <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
+                                                                    <BookmarkBorderRoundedIcon className="orange"/>
+                                                                    <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                    儲存書籤
+                                                                    </Typography>
+                                                                </Button>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </Box>
+                                                </Grid>
+                                            </Grid>
+                                        </CardActions>
+                                    </Card>
+                                
+                            </Grid>
+                            <Grid item xs={4}>
+                                
+                                    <Card 
                                         sx={{ textAlign: 'center' }} 
-                                        className="" 
+                                        elevation={0} 
+                                        className="card-sas" 
                                         justifyContent="center"
                                         alignItems="center"
                                     >
-                                        <Grid 
-                                            container
-                                            direction="row"
+                                        <CardActionArea>
+                                            <Link to={'#'} color="inherit" underline="none">
+                                                <CardMedia
+                                                component="img"
+                                                height="200"
+                                                image={image03}
+                                                alt="味噌藍莓生乳酪"
+                                                />
+                                            </Link>
+                                        </CardActionArea>
+                                        <CardActions 
+                                            sx={{ textAlign: 'center' }} 
+                                            className="" 
                                             justifyContent="center"
                                             alignItems="center"
                                         >
-                                            <Grid item sx={12}>
-                                                <Button variant="text" className="underline" href="#">
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                    原味提拉米蘇
-                                                    </Typography>
-                                                </Button>
-                                            </Grid>
-                                            <Grid item sx={12}>
-                                                <Box sx={{ width: '250px' }}>
-                                                    <Grid 
-                                                        container
-                                                        direction="row"
-                                                        justifyContent="center"
-                                                        alignItems="center"
-                                                    >
-                                                        <Grid item xs={6}>
-                                                            <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
-                                                                <AccessTimeRoundedIcon className="orange"/>
-                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                                40 分鐘
-                                                                </Typography>
-                                                            </Button>
+                                            <Grid 
+                                                container
+                                                direction="row"
+                                                justifyContent="center"
+                                                alignItems="center"
+                                            >
+                                                <Grid item sx={12}>
+                                                    <Button variant="text" className="underline" href="#">
+                                                        <Typography gutterBottom variant="h5" component="div">
+                                                        味噌藍莓生乳酪
+                                                        </Typography>
+                                                    </Button>
+                                                </Grid>
+                                                <Grid item sx={12}>
+                                                    <Box sx={{ width: '250px' }}>
+                                                        <Grid 
+                                                            container
+                                                            direction="row"
+                                                            justifyContent="center"
+                                                            alignItems="center"
+                                                        >
+                                                            <Grid item xs={6}>
+                                                                <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
+                                                                    <AccessTimeRoundedIcon className="orange"/>
+                                                                    <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                    40 分鐘
+                                                                    </Typography>
+                                                                </Button>
+                                                            </Grid>
+                                                            <Grid item xs={6}>
+                                                                <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
+                                                                    <BookmarkBorderRoundedIcon className="orange"/>
+                                                                    <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
+                                                                    儲存書籤
+                                                                    </Typography>
+                                                                </Button>
+                                                            </Grid>
                                                         </Grid>
-                                                        <Grid item xs={6}>
-                                                            <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
-                                                                <BookmarkBorderRoundedIcon className="orange"/>
-                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                                儲存書籤
-                                                                </Typography>
-                                                            </Button>
-                                                        </Grid>
-                                                    </Grid>
-                                                </Box>
+                                                    </Box>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </CardActions>
-                                </Card>
-                            
+                                        </CardActions>
+                                    </Card>
+                                
+                            </Grid>
                         </Grid>
-                        <Grid item xs={4}>
-                            
-                                <Card 
-                                    sx={{ textAlign: 'center' }} 
-                                    elevation={0} 
-                                    className="card-sas" 
-                                    justifyContent="center"
-                                    alignItems="center"
-                                >
-                                    <CardActionArea>
-                                        <Link to={'#'} color="inherit" underline="none">
-                                            <CardMedia
-                                            component="img"
-                                            height="200"
-                                            image={image03}
-                                            alt="味噌藍莓生乳酪"
-                                            />
-                                        </Link>
-                                    </CardActionArea>
-                                    <CardActions 
-                                        sx={{ textAlign: 'center' }} 
-                                        className="" 
-                                        justifyContent="center"
-                                        alignItems="center"
-                                    >
-                                        <Grid 
-                                            container
-                                            direction="row"
-                                            justifyContent="center"
-                                            alignItems="center"
-                                        >
-                                            <Grid item sx={12}>
-                                                <Button variant="text" className="underline" href="#">
-                                                    <Typography gutterBottom variant="h5" component="div">
-                                                    味噌藍莓生乳酪
-                                                    </Typography>
-                                                </Button>
-                                            </Grid>
-                                            <Grid item sx={12}>
-                                                <Box sx={{ width: '250px' }}>
-                                                    <Grid 
-                                                        container
-                                                        direction="row"
-                                                        justifyContent="center"
-                                                        alignItems="center"
-                                                    >
-                                                        <Grid item xs={6}>
-                                                            <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
-                                                                <AccessTimeRoundedIcon className="orange"/>
-                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                                40 分鐘
-                                                                </Typography>
-                                                            </Button>
-                                                        </Grid>
-                                                        <Grid item xs={6}>
-                                                            <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory">
-                                                                <BookmarkBorderRoundedIcon className="orange"/>
-                                                                <Typography gutterBottom sx={{ fontSize: 16, mb:0, ml:1 }}>
-                                                                儲存書籤
-                                                                </Typography>
-                                                            </Button>
-                                                        </Grid>
-                                                    </Grid>
-                                                </Box>
-                                            </Grid>
-                                        </Grid>
-                                    </CardActions>
-                                </Card>
-                            
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Grid>
+                    </Box>
+                </Grid>
+            </Box>
+            <Box sx={{ backgroundColor:'#F2F2F2', height:'44.3vh' }}>
+
+            </Box>
+          
+            
        
  </>
 

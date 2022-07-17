@@ -29,7 +29,7 @@ function TeamLR() {
 
             <Grid 
                 container 
-                sx={{ px:5 }}
+                sx={{ px:5, backgroundColor:'#F2F2F2', pb:2.8 }}
                 spacing={3}
                 direction="row"
                 justifyContent="center"
@@ -63,12 +63,12 @@ function TeamLR() {
 
                             <Box textAlign='left'>
                                 <p>上傳者</p>
-                                <Button variant="contained" sx={{ mb:2 }}>若雯</Button>
+                                <Button variant="contained" sx={{ mb:2 }} className="upload">若雯</Button>
                                 <p>協作者</p>
                                 <Grid container spacing={2} direction="row">
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">秀鳳</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">惠玲</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">碧如</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">秀鳳</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">惠玲</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">碧如</Button></Grid>
                                 </Grid>
                             </Box>
                         </CardContent>
@@ -105,12 +105,12 @@ function TeamLR() {
 
                             <Box textAlign='left'>
                                 <p>上傳者</p>
-                                <Button variant="contained" sx={{ mb:2 }}>若雯</Button>
+                                <Button variant="contained" sx={{ mb:2 }} className="upload">若雯</Button>
                                 <p>協作者</p>
                                 <Grid container spacing={2} direction="row">
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">秀鳳</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">惠玲</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">碧如</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">秀鳳</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">惠玲</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">碧如</Button></Grid>
                                 </Grid>
                             </Box>
                         </CardContent>
@@ -147,12 +147,12 @@ function TeamLR() {
 
                             <Box textAlign='left'>
                                 <p>上傳者</p>
-                                <Button variant="contained" sx={{ mb:2 }}>若雯</Button>
+                                <Button variant="contained" sx={{ mb:2 }} className="upload">若雯</Button>
                                 <p>協作者</p>
                                 <Grid container spacing={2} direction="row">
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">秀鳳</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">惠玲</Button></Grid>
-                                    <Grid item xs={4}><Button className="full-width" variant="contained">碧如</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">秀鳳</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">惠玲</Button></Grid>
+                                    <Grid item xs={4}><Button className="help" variant="contained">碧如</Button></Grid>
                                 </Grid>
                             </Box>
                         </CardContent>
