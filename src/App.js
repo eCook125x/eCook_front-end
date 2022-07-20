@@ -3,14 +3,15 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import About from "./pages/About/About";
-import Login from "./pages/Login/login";
-import Link from "./pages/Link/link";
+import Login from "./pages/Login/Login";
+import Link from "./pages/Link/Link";
 import Cookbook from "./pages/Cookbook/Cookbook";
 import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
 import MealRecipes from "./pages/MealRecipes/MealRecipes";
 import LearningRecord from "./pages/LearningRecord/LearningRecord";
 import TeamLR from "./pages/TeamLR/TeamLR";
 import TeamLRDirections from "./pages/TeamLR-Directions/TeamLR-Directions";
+import Complete from "./pages/Complete/Complete";
 
 function App() {
   return (
@@ -20,7 +21,11 @@ function App() {
         <Route path='/' element={<Login />} />
         
       </Routes>
-     
+      <Routes>
+
+        <Route path='/complete' element={<Complete />} />
+
+      </Routes>
       <Routes>
 
         <Route path='/link' element={<Link />} />

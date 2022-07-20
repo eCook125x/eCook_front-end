@@ -203,7 +203,7 @@ function MealRecipes() {
                         </Grid>
                         <Grid item xs={4}>
                             <Box textAlign='right'>
-                                <Button variant="contained" className="" style={{ backgroundColor: '#FF8527' }}>確定</Button>
+                                <Button variant="contained" className="" style={{ backgroundColor: '#FF8527' }} href="/complete">確定</Button>
                             </Box>
                         </Grid>
                     </Grid>

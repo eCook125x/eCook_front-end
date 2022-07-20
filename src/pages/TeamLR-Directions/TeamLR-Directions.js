@@ -15,7 +15,9 @@ import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import Rating from '@mui/material/Rating';
 
-import image01 from '../../images/TeamLRDirections/01.png';
+import image02 from '../../images/TeamLRDirections/02.JPG';
+import image03 from '../../images/TeamLRDirections/03.JPG';
+import image04 from '../../images/TeamLRDirections/04.JPG';
 import image10 from '../../images/MealRecipes/10.png';
 
 function TeamLRDirections() {
@@ -51,7 +53,7 @@ function TeamLRDirections() {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={image01}
+                            image={image02}
                             alt="定食套餐"
                         />
                     </Grid>
@@ -59,7 +61,7 @@ function TeamLRDirections() {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={image01}
+                            image={image03}
                             alt="定食套餐"
                         />
                     </Grid>
@@ -67,7 +69,7 @@ function TeamLRDirections() {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={image01}
+                            image={image04}
                             alt="定食套餐"
                         />
                     </Grid>
