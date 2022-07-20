@@ -89,7 +89,8 @@ function MealRecipes(props) {
     };
 
 
-    const [setImage] = React.useState(null);
+    const [image, setImage] = React.useState(null);
+    console.log(image)
 
     const onImageChange = (e) => {
         console.log("file", e.target.files[0]);
@@ -191,6 +192,13 @@ function MealRecipes(props) {
                             </Button>
                             </label>  */}
                             <input type="file" onChange={onImageChange} className="filetype"  accept=".jepg,.png,.jpg"/>
+                            {/* <CardMedia
+                                component="img"
+                                height="auto"
+                                image={Image}
+                                alt=""
+                            /> */}
+                            <img src={`data:image/png;base64,${image}`} alt="類別圖片" width={200} height={150}></img>
                         </Grid>
                     </Grid>
 
