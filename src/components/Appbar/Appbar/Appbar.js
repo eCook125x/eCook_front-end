@@ -18,9 +18,11 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MicrowaveRoundedIcon from '@mui/icons-material/MicrowaveRounded';
+import ReceiptLongRoundedIcon from '@mui/icons-material/ReceiptLongRounded';
+import BookmarksRoundedIcon from '@mui/icons-material/BookmarksRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import Button from '@mui/material/Button';
 
 import './Appbar.css'
 
@@ -46,9 +48,11 @@ const Appbar = () => {
                 返回
             </Typography>
 
-            <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'bold', m: 1 }}>
+            {/* <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'bold', m: 1 }} href="/link">
                 eCook
-            </Typography>
+            </Typography> */}
+
+            <Button className='ecook' sx={{ mx:2 }} href="/link">eCook</Button>
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -68,17 +72,17 @@ const Appbar = () => {
                 </IconButton> */}
 
                 <BottomNavigation showLabels className='bg-none'>
-                    <BottomNavigationAction className='white' label="料理食譜" icon={<RestoreIcon />} />
-                    <BottomNavigationAction className='white' label="學習記錄" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction className='white' label="學習書籤" icon={<LocationOnIcon />} />
-                    <BottomNavigationAction className='white' label="通知" icon={<FavoriteIcon />} />
-                    <BottomNavigationAction className='white' label="館長" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction className='white' label="料理食譜" icon={<MicrowaveRoundedIcon />} href="/cookbook"/>
+                    <BottomNavigationAction className='white' label="學習記錄" icon={<ReceiptLongRoundedIcon />} href="/LearningRecord"/>
+                    <BottomNavigationAction className='white' label="學習書籤" icon={<BookmarksRoundedIcon />} />
+                    <BottomNavigationAction className='white' label="通知" icon={<EmailRoundedIcon />} />
+                    {/* <BottomNavigationAction className='white' label="館長" icon={<LocationOnIcon />} /> */}
                 </BottomNavigation>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, pl:1 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>

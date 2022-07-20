@@ -198,7 +198,7 @@ function SweetAndSavory() {
                                         alignItems="center"
                                     >
                                         <CardActionArea>
-                                            <Link to={'#'} color="inherit" underline="none">
+                                            <Link to={'/Cookbook/SweetAndSavory/MealRecipes'} color="inherit" underline="none">
                                                 <CardMedia
                                                 component="img"
                                                 height="200"
@@ -220,7 +220,7 @@ function SweetAndSavory() {
                                                 alignItems="center"
                                             >
                                                 <Grid item sx={12}>
-                                                    <Button variant="text" className="underline" href="#">
+                                                    <Button variant="text" className="underline" href="/Cookbook/SweetAndSavory/MealRecipes">
                                                         <Typography gutterBottom variant="h5" component="div">
                                                         味噌藍莓生乳酪
                                                         </Typography>

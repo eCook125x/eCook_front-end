@@ -18,18 +18,9 @@ import image07 from '../../images/MealRecipes/07.png';
 import image08 from '../../images/MealRecipes/08.png';
 import image09 from '../../images/MealRecipes/09.png';
 import image10 from '../../images/MealRecipes/10.png';
-import image11 from '../../images/MealRecipes/11.png';
-import image12 from '../../images/MealRecipes/12.png';
+// import image11 from '../../images/MealRecipes/11.png';
+// import image12 from '../../images/MealRecipes/12.png';
 // import image13 from '../../images/MealRecipes/13.png';
-
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -44,19 +35,8 @@ import FormControl from '@mui/material/FormControl';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('餅乾底', '', ''),
-  createData('已烤好的塔殼', '4個', 'O'),
-  createData('杏鮑菇', '400克', 'O'),
-  createData('白味噌', '75克', 'O'),
-  createData('奶蛋液', '', ''),
-  createData('蛋', '4顆', 'O'),
-  createData('鮮奶油', '100毫升', 'O'),
-];
+import { orange } from '@mui/material/colors';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 const style = {
     position: 'absolute',
@@ -75,10 +55,7 @@ const style = {
     mt:4,
   };
 
-function MealRecipes(props) {
-
-    const { onSelectAllClick, numSelected, rowCount } =
-    props;
+function MealRecipes() {
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
@@ -87,7 +64,6 @@ function MealRecipes(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
 
     const [image, setImage] = React.useState(null);
     console.log(image)
@@ -106,6 +82,21 @@ function MealRecipes(props) {
         let binaryString = readerEvt.target.result;
         setImage(btoa(binaryString))
     };
+
+
+    const [selectedValue, setSelectedValue] = React.useState('a');
+
+    const handleChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
+
+    const controlProps = (item) => ({
+        checked: selectedValue === item,
+        onChange: handleChange,
+        value: item,
+        name: 'color-radio-button-demo',
+        inputProps: { 'aria-label': item },
+      });
 
     return (
         <>
@@ -142,7 +133,7 @@ function MealRecipes(props) {
                         id="tags-outlined"
                         options={top100Films}
                         getOptionLabel={(option) => option.title}
-                        defaultValue={[top100Films[2]]}
+                        // defaultValue={[top100Films[2]]}
                         filterSelectedOptions
                         renderInput={(params) => (
                         <TextField
@@ -157,7 +148,7 @@ function MealRecipes(props) {
                     <TextField id="standard-basic" label="點一下輸入學習記錄" variant="standard" className="full-width"/>
 
                     <Grid container spacing={3} sx={{ my:1, mb:4 }}>
-                        <Grid item xs={4}>
+                        {/* <Grid item xs={4}>
                             <CardMedia
                                 component="img"
                                 height="auto"
@@ -172,7 +163,7 @@ function MealRecipes(props) {
                                 image={image12}
                                 alt="定食套餐"
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={4}>
                             {/* <input
                                 accept="image/*"
@@ -223,7 +214,7 @@ function MealRecipes(props) {
           
             <Box container sx={{ px:5 }}>
                 <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 0, p: 3, pt:12 }}>
-                    手作甜鹹點
+                味噌藍莓生乳酪
                 </Typography>
 
                 <CardMedia
@@ -245,54 +236,156 @@ function MealRecipes(props) {
                     </Grid>
                 </Grid>
 
-                <TableContainer component={Paper} sx={{ mb:4 }}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell padding="checkbox">
-                            <Checkbox
-                                color="primary"
-                                indeterminate={numSelected > 0 && numSelected < rowCount}
-                                checked={rowCount > 0 && numSelected === rowCount}
-                                onChange={onSelectAllClick}
-                                inputProps={{
-                                'aria-label': 'select all desserts',
+                <Box>
+                    <Grid container spacing={3} sx={{ my:1, mb:2, pl:0  }}>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="h6">
+                            已全部取得
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
                                 }}
                             />
-                            </TableCell>
-                            <TableCell>已全部取得</TableCell>
-                            <TableCell align="right">&nbsp;</TableCell>
-                            <TableCell align="right">&nbsp;</TableCell>
-                        </TableRow>
-                        </TableHead>
+                        </Grid>
+                    </Grid>
 
-                        <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                            <TableCell padding="checkbox">
-                            <Checkbox
-                                color="primary"
-                                indeterminate={numSelected > 0 && numSelected < rowCount}
-                                checked={rowCount > 0 && numSelected === rowCount}
-                                onChange={onSelectAllClick}
-                                inputProps={{
-                                'aria-label': 'select all desserts',
+                    <Typography sx={{ mb:0 }} variant="h6">
+                        餅乾底
+                    </Typography>
+                    <Grid container spacing={3} sx={{ my:1, mb:0, pl:0  }} className="border-b">
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            原味消化餅乾
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            150克
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <SearchRoundedIcon/>
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
                                 }}
                             />
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3} sx={{ my:0, mb:4, pl:0  }} className="border-b">
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            無鹽奶油
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            88克
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <SearchRoundedIcon/>
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    <Typography sx={{ mb:0 }} variant="h6">
+                    藍莓果醬
+                    </Typography>
+                    <Grid container spacing={3} sx={{ my:1, mb:0, pl:0  }} className="border-b">
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            藍莓
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            240克
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <SearchRoundedIcon/>
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3} sx={{ my:0, mb:0, pl:0  }} className="border-b">
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            細砂糖
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            40克
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <SearchRoundedIcon/>
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={3} sx={{ my:0, mb:4, pl:0  }} className="border-b">
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            檸檬汁
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography sx={{ mb:2 }} variant="body1">
+                            20克
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={4} textAlign="right">
+                            <SearchRoundedIcon/>
+                            <Radio
+                                {...controlProps('e')}
+                                sx={{
+                                color: orange[800],
+                                '&.Mui-checked': {
+                                    color: orange[600],
+                                },
+                                }}
+                            />
+                        </Grid>
+                    </Grid>
+                </Box>
 
                 <Box textAlign='center' sx={{ mb:4 }}>
                     <Button variant="contained" className="" style={{ backgroundColor: '#FF8527' }}>按這裡進行下一步</Button>
