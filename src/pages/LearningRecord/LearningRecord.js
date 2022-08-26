@@ -66,7 +66,7 @@ function LearningRecord() {
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions className="center" sx={{ p: 2 }}>
-                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord/TeamLR">
+                                    <Button size="" variant="contained" color="warning" disableElevation href="/LearningRecord/PersonalLR">
                                     開始記錄
                                     </Button>
                                 </CardActions>

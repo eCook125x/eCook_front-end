@@ -38,3 +38,7 @@
 .border-b {
     border-bottom: #828282 0.5px solid;
 }
+
+.text-grey {
+    color: #828282 !important;
+}

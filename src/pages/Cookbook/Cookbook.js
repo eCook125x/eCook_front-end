@@ -1,26 +1,39 @@
-import React from "react"
-import './Cookbook.css'
+import React from "react";
+import "./Cookbook.css";
 import Appbar from "../../components/Appbar/Appbar/Appbar";
 
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActions, CardActionArea, Button } from "@mui/material";
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import image01 from '../../images/cookbook/01.png';
-import image02 from '../../images/cookbook/02.png';
-import image03 from '../../images/cookbook/03.png';
-import image04 from '../../images/cookbook/04.png';
-import image05 from '../../images/cookbook/05.png';
-import image06 from '../../images/cookbook/06.png';
+import { useState, useEffect } from "react";
+import api from "../../axios/api";
 
 function Cookbook() {
+    const [cookbookData, setCookbook] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        api.get("/api/cookbook", {
+            headers: { "Content-Type": "application/json" },
+        }).then((res) => {
+            setCookbook(res.data);
+            console.log(res.data);
+        });
+    }, []);
+
+    function handleClickCardAction(id, name) {
+        navigate(`/Cookbook/SweetAndSavory`);
+
+        window.sessionStorage.setItem("cookbookId", id);
+        window.sessionStorage.setItem("cookbookName", name);
+    }
 
     return (
         <>
@@ -30,29 +43,87 @@ function Cookbook() {
                 container
                 justifyContent="center"
                 alignItems="center"
-
                 spacing={0}
                 direction="column"
-                sx={{ alignItems: 'center', justifyContent: 'center' }}
-                height="100vh" display="flex" flexDirection="column"
+                sx={{ alignItems: "center", justifyContent: "center" }}
+                height="100vh"
+                display="flex"
+                flexDirection="column"
             >
-                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 1, p: 2 }}>
+                <Typography
+                    variant="h5"
+                    gutterBottom
+                    component="div"
+                    align="center"
+                    sx={{ fontWeight: "normal", m: 1, p: 2 }}
+                >
                     食譜類別
                 </Typography>
 
+                {/* <ul>
+                    {cookbookData.map(cookbookData => 
+                        <div>
+                        {cookbookData.id}
+                        {cookbookData.img}
+                        {cookbookData.name}
+                        </div>
+                    )}
+                </ul> */}
+
                 <Box>
-                    <Grid 
-                        container 
+                    <Grid
+                        container
                         spacing={0}
                         columns={{ xs: 12, sm: 12, md: 12 }}
-                        rowSpacing={3} 
+                        rowSpacing={3}
                         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                         direction="row"
                         justifyContent="center"
                         alignItems="center"
-                        sx={{ px:5 }}
+                        sx={{ px: 5 }}
                     >
-                        <Grid item xs={4}>
+                        {cookbookData.map((cookbookData) => (
+                            <Grid item xs={4}>
+                                <Card
+                                    sx={{ textAlign: "center" }}
+                                    elevation={0}
+                                    className="card"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <CardActionArea
+                                        onClick={() => handleClickCardAction(cookbookData.id, cookbookData.name)}
+                                    >
+                                        {/* <Link to={`/Cookbook/SweetAndSavory/`} color="inherit" underline="none"> */}
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={cookbookData.img}
+                                            alt={cookbookData.id}
+                                        />
+                                        {/* </Link> */}
+                                    </CardActionArea>
+                                    <CardActions
+                                        sx={{ textAlign: "center" }}
+                                        className="card"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <Button
+                                            variant="text"
+                                            className="underline"
+                                            onClick={() => handleClickCardAction(cookbookData.id, cookbookData.name)}
+                                        >
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                {cookbookData.name}
+                                            </Typography>
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+
+                        {/* <Grid item xs={4}>
                             <Card sx={{ textAlign: 'center' }} elevation={0} className="card" >
                                 <CardActionArea>
                                     <CardMedia
@@ -170,15 +241,12 @@ function Cookbook() {
                                     </CardContent>
                                 </CardActionArea>
                             </Card>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Box>
-
             </Grid>
-
         </>
-
     );
 }
 
-export default Cookbook
+export default Cookbook;

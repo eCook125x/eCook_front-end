@@ -12,6 +12,9 @@ import LearningRecord from "./pages/LearningRecord/LearningRecord";
 import TeamLR from "./pages/TeamLR/TeamLR";
 import TeamLRDirections from "./pages/TeamLR-Directions/TeamLR-Directions";
 import Complete from "./pages/Complete/Complete";
+import PersonalLR from "./pages/PersonalLR/PersonalLR";
+import PersonalLRDirections from "./pages/PersonalLR-Directions/PersonalLR-Directions";
+import Bookmark from "./pages/Bookmark/Bookmark";
 
 function App() {
   return (
@@ -46,8 +49,15 @@ function App() {
       <Routes>
 
         <Route path='/LearningRecord' element={<LearningRecord />} />
+        <Route path='/LearningRecord/PersonalLR' element={<PersonalLR />} />
+        <Route path='/LearningRecord/PersonalLR/PersonalLR-Directions' element={< PersonalLRDirections />} />
         <Route path='/LearningRecord/TeamLR' element={<TeamLR />} />
         <Route path='/LearningRecord/TeamLR/TeamLR-Directions' element={<TeamLRDirections />} />
+        
+      </Routes>
+      <Routes>
+
+        <Route path='/bookmark' element={< Bookmark />} />
         
       </Routes>
     </Router>
