@@ -7,9 +7,9 @@ import TextField from "@mui/material/TextField";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import LockRoundedIcon from "@mui/icons-material/LockRounded";
 
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import FormGroup from "@mui/material/FormGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 
 // import IconButton from '@mui/material/IconButton';
@@ -21,7 +21,6 @@ import Button from "@mui/material/Button";
 // import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import { useState } from "react";
-// import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../axios/api";
 import { Modal } from "antd";
@@ -76,7 +75,7 @@ function Login() {
                     navigate("/link");
                     localStorage.setItem("username", data.username);
                     localStorage.setItem("id", data.id);
-                    localStorage.setItem("img", data.img);
+                    localStorage.setItem("userImg", data.img);
                 } else if (data.message === "帳號或密碼錯誤") {
                     setMessage("帳號或密碼錯誤");
                     setIsModalVisible(true);
@@ -93,9 +92,8 @@ function Login() {
     }
     // useEffect(()=>{
     //     if(localStorage.getItem('id')){
-    //         navigate('/home')
+    //         navigate('/')
     //     }
-
     // })
 
     return (
@@ -176,7 +174,7 @@ function Login() {
                     </FormControl> */}
                 </Box>
 
-                <FormGroup>
+                {/* <FormGroup>
                     <Grid container spacing={0}>
                         <Grid item sx={6} alignContent="left">
                             <FormControlLabel control={<Checkbox />} label="保持登入" />
@@ -187,7 +185,7 @@ function Login() {
                             </Button>
                         </Grid>
                     </Grid>
-                </FormGroup>
+                </FormGroup> */}
 
                 <Button variant="contained" sx={{ m: 3, width: "35ch" }} color="warning" onClick={handleApi}>
                     登入

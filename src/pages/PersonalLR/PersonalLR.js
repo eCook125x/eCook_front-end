@@ -1,15 +1,15 @@
-import React from "react"
-import './PersonalLR.css'
+import React from "react";
+import "./PersonalLR.css";
 import Appbar from "../../components/Appbar/Appbar/Appbar";
 
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import { Button, CardActions } from '@mui/material';
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import { Button, CardActions } from "@mui/material";
 
 // import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
@@ -18,12 +18,13 @@ import api from "../../axios/api";
 import { useNavigate } from "react-router-dom";
 
 function PersonalLR() {
-
     const [PLRData, setPLR] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        api.get(`/api/studyRecord/personnelLR/14`, {
+        const UId = window.localStorage.getItem("id");
+
+        api.get(`/api/studyRecord/personnelLR/${UId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setPLR(res.data);
@@ -32,7 +33,7 @@ function PersonalLR() {
     }, []);
     console.log(PLRData);
 
-    function handleClickCardAction(collaborator,cuisineName,img,star,text,time,username) {
+    function handleClickCardAction(collaborator, cuisineName, img, star, text, time, username, SId) {
         navigate(`/LearningRecord/PersonalLR/PersonalLR-Directions`);
 
         window.sessionStorage.setItem("collaborator", collaborator);
@@ -42,15 +43,22 @@ function PersonalLR() {
         window.sessionStorage.setItem("text", text);
         window.sessionStorage.setItem("time", time);
         window.sessionStorage.setItem("username", username);
+        window.sessionStorage.setItem("SId", SId);
     }
 
     return (
-        <body className="bg-gray" >
+        <body className="bg-gray">
             <Appbar />
 
-            <Box container sx={{ px:5, backgroundColor:'#F2F2F2', pt:8 }}>
-                <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'normal', m: 1, p: 2 }}>
-                自我學習記錄
+            <Box container sx={{ px: 5, backgroundColor: "#F2F2F2", pt: 8 }}>
+                <Typography
+                    variant="h5"
+                    gutterBottom
+                    component="div"
+                    align="center"
+                    sx={{ fontWeight: "normal", m: 1, p: 2 }}
+                >
+                    自我學習記錄
                 </Typography>
             </Box>
 
@@ -108,58 +116,63 @@ function PersonalLR() {
                 <br/>
             </Box> */}
 
-
-            <Grid 
-                container 
-                sx={{ px:5, backgroundColor:'#F2F2F2', pb:2.8 }}
+            <Grid
+                container
+                sx={{ px: 5, backgroundColor: "#F2F2F2", pb: 2.8 }}
                 spacing={3}
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
             >
                 {PLRData.map((PLRData) => (
-                <Grid item xs={4}>
-                    <Card 
-                        sx={{ textAlign: 'center', p:1 }} 
-                        elevation={0} 
-                        className="card-teamLR" 
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <CardContent>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={PLRData.img}
-                                alt={PLRData.cuisineName}
-                            />
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            {PLRData.time}
-                            </Typography>
+                    <Grid item xs={4}>
+                        <Card
+                            sx={{ textAlign: "center", p: 1 }}
+                            elevation={0}
+                            className="card-teamLR"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <CardContent>
+                                <CardMedia
+                                    component="img"
+                                    height="auto"
+                                    image={PLRData.img}
+                                    alt={PLRData.cuisineName}
+                                />
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                    {PLRData.time}
+                                </Typography>
 
-                            <Typography variant="h4" component="div" className="step" sx={{ py:2 }}>
-                            {PLRData.cuisineName}
-                            </Typography>
-                            <Typography variant="h5" sx={{ pt:2 }}>
-                            {PLRData.cuisineItem}
-                            </Typography>
-                        </CardContent>
-                        <CardActions className="center">
-                            <Button variant="contained" style={{ backgroundColor: '#FF8527' }} 
-                            onClick={() =>
-                                handleClickCardAction(
-                                    PLRData.collaborator,
-                                    PLRData.cuisineName,
-                                    PLRData.img,
-                                    PLRData.star,
-                                    PLRData.text,
-                                    PLRData.time,
-                                    PLRData.username
-                                )
-                            }>查看更多</Button>
-                        </CardActions>
-                    </Card>     
-                </Grid>
+                                <Typography variant="h4" component="div" className="step" sx={{ py: 2 }}>
+                                    {PLRData.cuisineName}
+                                </Typography>
+                                <Typography variant="h5" sx={{ pt: 2 }}>
+                                    {PLRData.cuisineItem}
+                                </Typography>
+                            </CardContent>
+                            <CardActions className="center">
+                                <Button
+                                    variant="contained"
+                                    style={{ backgroundColor: "#FF8527" }}
+                                    onClick={() =>
+                                        handleClickCardAction(
+                                            PLRData.collaborator,
+                                            PLRData.cuisineName,
+                                            PLRData.img,
+                                            PLRData.star,
+                                            PLRData.text,
+                                            PLRData.time,
+                                            PLRData.username,
+                                            PLRData.id
+                                        )
+                                    }
+                                >
+                                    查看更多
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
                 ))}
                 {/* <Grid item xs={4}>
                     <Card 
@@ -224,10 +237,8 @@ function PersonalLR() {
                     </Card>     
                 </Grid> */}
             </Grid>
-
         </body>
-
     );
 }
 
-export default PersonalLR
+export default PersonalLR;

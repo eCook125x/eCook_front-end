@@ -105,7 +105,7 @@ function MealRecipes() {
     const [StepData, setStep] = useState([]);
     const [UserData, setUser] = useState([]);
     const top100Films = UserData;
-    console.log(top100Films)
+    // console.log(top100Films)
 
     const [sweetAndSavoryDataName, setsweetAndSavoryDataName] = useState([]);
     const [sweetAndSavoryDataImg, setsweetAndSavoryDataImg] = useState([]);
@@ -117,8 +117,8 @@ function MealRecipes() {
         setsweetAndSavoryDataImg(window.sessionStorage.getItem("sweetAndSavoryDataImg"));
 
         setUId(window.localStorage.getItem("id"));
-        setCuisineCategory(window.sessionStorage.getItem("sweetAndSavoryDataName"));
-        setCookbookName(window.sessionStorage.getItem("cookbookName"));
+        setCuisineCategory(window.sessionStorage.getItem("cookbookName"));
+        setCookbookName(window.sessionStorage.getItem("sweetAndSavoryDataName"));
 
         api.get(`/api/cookbook/meal/ingredient/${sweetAndSavoryDataId}`, {
             headers: { "Content-Type": "application/json" },
@@ -141,11 +141,11 @@ function MealRecipes() {
             console.log(res.data);
         });
     }, []);
-    // console.log(StepData);
+    console.log(MRData);
 
     const [inputValue, setInputValue] = React.useState([]);
     const str = inputValue.toString();
-    console.log(str);
+    // console.log(str);
 
     const [Star, setStar] = useState("");
     const [Text, setText] = useState("");
@@ -155,17 +155,19 @@ function MealRecipes() {
     // const [Img, setImg] = useState("");
     const [UId, setUId] = useState("");
     const navigate = useNavigate();
-    
+    const moment = require("moment");
+    const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
 
     async function handleApi() {
-        console.log("協作者 : "+str);
-        console.log("評分星星 : "+Star);
-        console.log("學習紀錄文字 : "+Text);
-        console.log("料理類別 : "+CuisineCategory);
-        console.log("料理名稱 : "+cookbookName);
-        console.log("料理品項 : "+CuisineItem);
-        console.log("圖片 : "+image);
-        console.log("上傳人員id : "+UId);
+        console.log("協作者 : " + str);
+        console.log("評分星星 : " + Star);
+        console.log("學習紀錄文字 : " + Text);
+        console.log("料理類別 : " + CuisineCategory);
+        console.log("料理名稱 : " + cookbookName);
+        console.log("料理品項 : " + CuisineItem);
+        console.log("圖片 : " + image);
+        console.log("上傳人員id : " + UId);
+        console.log("上傳時間 : " + currentDateTime);
 
         await api
             .post("/api/studyRecord/add", {
@@ -177,6 +179,7 @@ function MealRecipes() {
                 cuisineItem: CuisineItem,
                 img: image,
                 u_id: UId,
+                time: currentDateTime,
             })
             .then((res) => {
                 navigate("/complete");
@@ -239,24 +242,20 @@ function MealRecipes() {
                         multiple
                         value={inputValue}
                         onChange={(e, value) => {
-                            setInputValue(value)
+                            setInputValue(value);
                         }}
                         id="tags-filled"
-                        options={top100Films.map((option) => option.username)}
+                        // options={top100Films.map((option) => option.username)}
+                        options={top100Films.map((option) => (option.id.toString() !== UId ? option.username : ""))}
                         // defaultValue={[top100Films[0].title]}
                         freeSolo
                         renderTags={(inputValue, getTagProps) =>
                             inputValue.map((option, index) => (
-                                <Chip variant="outlined" label={option} {...getTagProps({ index })} />                            
+                                <Chip variant="outlined" label={option} {...getTagProps({ index })} />
                             ))
                         }
                         renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                variant="filled"
-                                label="點選以編輯"
-                                placeholder="協作者"
-                            />
+                            <TextField {...params} variant="filled" label="點選以編輯" placeholder="協作者" />
                         )}
                     />
 
@@ -319,7 +318,7 @@ function MealRecipes() {
                                 image={Image}
                                 alt=""
                             /> */}
-                            <img src={`data:image/png;base64,${image}`} alt="類別圖片" width={200} height={150}></img>
+                            <img src={`data:image/png;base64,${image}`} alt="上傳圖片" width={200} height={150}></img>
                         </Grid>
                     </Grid>
 
@@ -388,7 +387,7 @@ function MealRecipes() {
                         </Button>
                     </Grid>
                     <Grid item xs={4}>
-                        <Button variant="outlined" className="full-width" disabled>
+                        <Button variant="contained" className="full-width" style={{ backgroundColor: "#FF8527" }}>
                             製作步驟
                         </Button>
                     </Grid>
@@ -396,7 +395,7 @@ function MealRecipes() {
                         {/* <Button variant="outlined" className="full-width" disabled>
                             上傳自我學習記錄
                         </Button> */}
-                         <Button
+                        <Button
                             variant="contained"
                             className="full-width"
                             style={{ backgroundColor: "#FF8527" }}

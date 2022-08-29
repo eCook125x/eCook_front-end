@@ -1,0 +1,21 @@
+.invisible {
+    color: rgba(0, 0, 0, 0) !important;
+}
+
+.true {
+    background-color: black !important;
+}
+
+.center {
+    align-items: center !important;
+    display: flex !important;
+}
+
+.invisible-input {
+    height: 0;
+    width: 0;
+    top: 30px;
+}
+.invisible-input > fieldset {
+    border-color: rgba(0, 0, 0, 0) !important;
+}

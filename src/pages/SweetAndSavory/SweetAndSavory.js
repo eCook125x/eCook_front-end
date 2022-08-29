@@ -12,6 +12,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
+import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
 
 import { useState, useEffect } from "react";
 import api from "../../axios/api";
@@ -24,18 +25,21 @@ function SweetAndSavory() {
 
     useEffect(() => {
         const cookbookId = window.sessionStorage.getItem("cookbookId");
+        const UId = window.localStorage.getItem("id");
         setCookbookName(window.sessionStorage.getItem("cookbookName"));
 
-        api.get(`/api/cookbook/meal/${cookbookId}`, {
+        setUserId(window.localStorage.getItem("id"));
+
+        api.get(`/api/cookbook/mealAll/${cookbookId}?id=${UId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             if (res.data) {
-                setSweetAndSavory([res.data]);
+                setSweetAndSavory(res.data);
             }
-            console.log(res.data);
+            // console.log(res.data);
         });
     }, []);
-    console.log(sweetAndSavoryData);
+    // console.log(sweetAndSavoryData);
 
     function handleClickCardAction(id, name, img) {
         navigate(`/Cookbook/SweetAndSavory/MealRecipes`);
@@ -44,6 +48,24 @@ function SweetAndSavory() {
         window.sessionStorage.setItem("sweetAndSavoryDataName", name);
         window.sessionStorage.setItem("sweetAndSavoryDataImg", img);
     }
+
+    const [UserId, setUserId] = useState("");
+    async function handleApi(id) {
+        // setIsActive((current) => !current);
+        await api
+            .post("/api/bookmark/onclick", {
+                favorite: "1",
+                m_id: id,
+                u_id: UserId,
+            })
+            .then((res) => {
+                // navigate(`/Bookmark`);
+                window.location.reload();
+                console.log(res.data);
+            });
+    }
+
+    // const [isActive, setIsActive] = useState(false);
 
     return (
         <>
@@ -164,19 +186,104 @@ function SweetAndSavory() {
                                                                     <Button
                                                                         variant="text"
                                                                         className="underline"
-                                                                        href="#"
+                                                                        // className={isActive ? "true" : ""}
+                                                                        onClick={() => handleApi(SweetAndSavoryData.id)}
                                                                     >
-                                                                        <BookmarkBorderRoundedIcon className="orange" />
-                                                                        <Typography
-                                                                            gutterBottom
-                                                                            sx={{
-                                                                                fontSize: 16,
-                                                                                mb: 0,
-                                                                                ml: 1,
-                                                                            }}
-                                                                        >
-                                                                            儲存書籤
-                                                                        </Typography>
+                                                                        {SweetAndSavoryData.favorite === 1 ? (
+                                                                            <div className="center">
+                                                                                <BookmarkRoundedIcon className="orange" />
+                                                                                <Typography
+                                                                                    gutterBottom
+                                                                                    sx={{ fontSize: 16, mb: 0, ml: 1 }}
+                                                                                    style={{
+                                                                                        display: "inline-block",
+                                                                                        width: "8vh",
+                                                                                    }}
+                                                                                >
+                                                                                    移除書籤
+                                                                                </Typography>
+                                                                                {/* 
+                                                                                <TextField
+                                                                                    className="invisible-input"
+                                                                                    value={SweetAndSavoryData.id}
+                                                                                    onChange={(e) =>
+                                                                                        setMId(e.target.value)
+                                                                                    }
+                                                                                >{SweetAndSavoryData.id}</TextField> */}
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div className="center">
+                                                                                <BookmarkBorderRoundedIcon className="orange" />
+                                                                                <Typography
+                                                                                    gutterBottom
+                                                                                    sx={{
+                                                                                        fontSize: 16,
+                                                                                        mb: 0,
+                                                                                        ml: 1,
+                                                                                    }}
+                                                                                    style={{
+                                                                                        display: "inline-block",
+                                                                                        width: "8vh",
+                                                                                    }}
+                                                                                >
+                                                                                    儲存書籤
+                                                                                </Typography>
+                                                                                {/* 
+                                                                                <TextField
+                                                                                    className="invisible-input"
+                                                                                    value={SweetAndSavoryData.id}
+                                                                                    onChange={(e) =>
+                                                                                        setMId(e.target.value)
+                                                                                    }
+                                                                                >{SweetAndSavoryData.id}</TextField> */}
+                                                                            </div>
+                                                                        )}
+
+                                                                        {/* {isActive ? (
+                                                                            <div className="center">
+                                                                                <BookmarkBorderRoundedIcon className="orange" />
+                                                                                <Typography
+                                                                                    gutterBottom
+                                                                                    sx={{
+                                                                                        fontSize: 16,
+                                                                                        mb: 0,
+                                                                                        ml: 1,
+                                                                                    }}
+                                                                                    style={{ display: "inline-block",width: "8vh" }}
+                                                                                >
+                                                                                    儲存書籤
+                                                                                </Typography>
+
+                                                                                <Typography
+                                                                                    className=""
+                                                                                    onChange={(e) =>
+                                                                                        setMId(e.target.value)
+                                                                                    }
+                                                                                >
+                                                                                    {SweetAndSavoryData.id}
+                                                                                </Typography>
+                                                                            </div>
+                                                                        ) : (
+                                                                            <div className="center">
+                                                                                <BookmarkRoundedIcon className="orange" />
+                                                                                <Typography
+                                                                                    gutterBottom
+                                                                                    sx={{ fontSize: 16, mb: 0, ml: 1 }}
+                                                                                    style={{ display: "inline-block",width: "8vh" }}
+                                                                                >
+                                                                                    移除書籤
+                                                                                </Typography>
+
+                                                                                <Typography
+                                                                                    className=""
+                                                                                    onChange={(e) =>
+                                                                                        setMId(e.target.value)
+                                                                                    }
+                                                                                >
+                                                                                    {SweetAndSavoryData.id}
+                                                                                </Typography>
+                                                                            </div>
+                                                                        )} */}
                                                                     </Button>
                                                                 </Grid>
                                                             </Grid>

@@ -21,7 +21,7 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Login title="eCook 高齡餐廚巧幫手"/>} />
         
       </Routes>
       <Routes>

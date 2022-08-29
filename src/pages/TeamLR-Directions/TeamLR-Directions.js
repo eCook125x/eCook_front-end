@@ -15,8 +15,6 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Rating from "@mui/material/Rating";
 
-import image10 from "../../images/MealRecipes/10.png";
-
 import { useState, useEffect } from "react";
 import api from "../../axios/api";
 import { useNavigate } from "react-router-dom";
@@ -32,47 +30,55 @@ function TeamLRDirections() {
     const [cuisineName, setcuisineName] = useState([]);
     const [img, setimg] = useState([]);
     const [username, setusername] = useState([]);
+    const [userImg, setuserImg] = useState([]);
 
     useEffect(() => {
         setUId(window.localStorage.getItem("id"));
-        setSId(window.localStorage.getItem("id"));
-        setRId(window.localStorage.getItem("id"));
+        setuserImg(window.localStorage.getItem("userImg"));
+        // setuserImg("https://i.imgur.com/DjkdE7v.jpg");
+        setSId(window.sessionStorage.getItem("SId"));
+        setRId("2");
 
         setcollaborator(window.sessionStorage.getItem("collaborator"));
         setcuisineName(window.sessionStorage.getItem("cuisineName"));
         setimg(window.sessionStorage.getItem("img"));
         setusername(window.sessionStorage.getItem("username"));
+        const SId = window.sessionStorage.getItem("SId");
 
-        api.get("/api/studyRecord/message/84", {
+        api.get(`/api/studyRecord/message/${SId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setTeamLRD(res.data);
         });
 
-        api.get("/api/studyRecord/pmessage/84", {
+        api.get(`/api/studyRecord/pmessage/${SId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setTeamLRP(res.data);
         });
 
-        api.get("/api/studyRecord/84", {
+        api.get(`/api/studyRecord/${SId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setSR([res.data]);
         });
     }, []);
-    console.log(SRData);
+    // console.log(SRData);
 
     const [Text, setText] = useState("");
     const [SId, setSId] = useState("");
     const [RId, setRId] = useState("");
     const [UId, setUId] = useState("");
     const navigate = useNavigate();
+    const moment = require("moment");
+    const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
+
     async function handleApi() {
         console.log(Text);
         console.log(SId);
         console.log(RId);
         console.log(UId);
+        console.log(currentDateTime);
 
         await api
             .post("/api/studyRecord/message/add", {
@@ -80,6 +86,7 @@ function TeamLRDirections() {
                 s_id: SId,
                 r_id: RId,
                 u_id: UId,
+                time: currentDateTime,
             })
             .then((res) => {
                 navigate("/complete");
@@ -103,7 +110,7 @@ function TeamLRDirections() {
                 </Typography>
 
                 <Typography sx={{ mb: 2, pb: 2 }} variant="h5" className="step">
-                {cuisineName}
+                    {cuisineName}
                 </Typography>
 
                 <Box textAlign="left">
@@ -122,7 +129,7 @@ function TeamLRDirections() {
 
                         <Grid item xs={2}>
                             <Button className="help" variant="contained">
-                            {collaborator}
+                                {collaborator}
                             </Button>
                         </Grid>
                         {/* <Grid item xs={2}>
@@ -154,33 +161,33 @@ function TeamLRDirections() {
                     {username}的學習紀錄
                 </Typography>
                 {SRData.map((SRData) => (
-                    <ListItem alignItems="flex-start" sx={{ mb:4, py:2 }} className="" backgroundColor="#FFF">
+                    <ListItem alignItems="flex-start" sx={{ mb: 4, py: 2 }} className="" backgroundColor="#FFF">
                         <ListItemAvatar>
-                        <Avatar alt="Remy Sharp" src={image10} />
+                            <Avatar alt="Remy Sharp" src={SRData.u_img} />
                         </ListItemAvatar>
                         <ListItemText
-                        primary={SRData.username +"的自我評分"}
-                        secondary={
-                            <React.Fragment>
-                                <Rating
-                                    name="simple-controlled"
-                                    value={SRData.star}
-                                    // onChange={(event, newValue) => {
-                                    // setValue(newValue);
-                                    // }}
-                                />
-                                <br/>
-                                <Typography
-                                    sx={{ display: 'inline' }}
-                                    component="span"
-                                    variant="body2"
-                                    color="text.primary"
-                                >
-                                    {SRData.text}
-                                </Typography>
-                                {" -"+SRData.time}
-                            </React.Fragment>
-                        }
+                            primary={SRData.username + "的自我評分"}
+                            secondary={
+                                <React.Fragment>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={SRData.star}
+                                        // onChange={(event, newValue) => {
+                                        // setValue(newValue);
+                                        // }}
+                                    />
+                                    <br />
+                                    <Typography
+                                        sx={{ display: "inline" }}
+                                        component="span"
+                                        variant="body2"
+                                        color="text.primary"
+                                    >
+                                        {SRData.text}
+                                    </Typography>
+                                    {" -" + SRData.time}
+                                </React.Fragment>
+                            }
                         />
                     </ListItem>
                 ))}
@@ -206,7 +213,7 @@ function TeamLRDirections() {
                                     >
                                         {TeamLRDData.text}
                                     </Typography>
-                                    {"- 4天前"}
+                                    {" -" + TeamLRDData.time}
                                 </React.Fragment>
                             }
                         />
@@ -234,7 +241,7 @@ function TeamLRDirections() {
                                     >
                                         {TeamLRPData.text}
                                     </Typography>
-                                    {"- 4天前"}
+                                    {" -" + TeamLRPData.time}
                                 </React.Fragment>
                             }
                         />
@@ -269,7 +276,7 @@ function TeamLRDirections() {
 
                 <ListItem alignItems="flex-start" sx={{ mb: 2, py: 2 }} className="list">
                     <ListItemAvatar>
-                        <Avatar alt="Remy Sharp" src={image10} />
+                        <Avatar alt="Remy Sharp" src={userImg} />
                     </ListItemAvatar>
                     <ListItemText
                         backgroundColor="#FFF"
