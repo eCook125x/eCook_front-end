@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import About from "./pages/About/About";
 import Login from "./pages/Login/login";
-import Link from "./pages/Link/Link";
+import Link from "./pages/Link/link";
 import Cookbook from "./pages/Cookbook/Cookbook";
 import SweetAndSavory from "./pages/SweetAndSavory/SweetAndSavory";
 import MealRecipes from "./pages/MealRecipes/MealRecipes";
