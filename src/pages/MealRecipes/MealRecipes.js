@@ -104,6 +104,7 @@ function MealRecipes() {
     const [MRData, setMR] = useState([]);
     const [StepData, setStep] = useState([]);
     const [UserData, setUser] = useState([]);
+    const [MealData, setMeal] = useState([]);
     const top100Films = UserData;
     // console.log(top100Films)
 
@@ -124,13 +125,20 @@ function MealRecipes() {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setMR(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         });
 
         api.get(`/api/cookbook/meal/step/${sweetAndSavoryDataId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setStep(res.data);
+            // console.log(res.data);
+        });
+
+        api.get(`/api/cookbook/meal/${sweetAndSavoryDataId}`, {
+            headers: { "Content-Type": "application/json" },
+        }).then((res) => {
+            setMeal([res.data]);
             console.log(res.data);
         });
 
@@ -138,10 +146,10 @@ function MealRecipes() {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
             setUser(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         });
     }, []);
-    console.log(MRData);
+    // console.log(MRData);
 
     const [inputValue, setInputValue] = React.useState([]);
     const str = inputValue.toString();
@@ -544,15 +552,17 @@ function MealRecipes() {
                     觀賞完整步驟
                 </Typography>
 
-                <iframe
-                    width="1022"
-                    height="575"
-                    src="https://www.youtube.com/embed/5j6Ko8-w-BA"
-                    title="【不老煮e-數位食譜輔學平台】介紹"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                ></iframe>
+                {MealData.map((MealData) => (
+                    <iframe
+                        width="1038"
+                        height="584"
+                        src={MealData.video}
+                        title={MealData.name}
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                ))}
 
                 <Typography sx={{ my: 2 }} variant="h6">
                     步驟解說
