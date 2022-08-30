@@ -23,7 +23,7 @@ import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-// import { orange } from "@mui/material/colors";
+import { orange } from "@mui/material/colors";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
 import { useState, useEffect } from "react";
@@ -32,8 +32,8 @@ import { useNavigate } from "react-router-dom";
 
 import Chip from "@mui/material/Chip";
 import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
-// import { useChecklist } from "react-checklist";
-// import Checkbox from "@mui/material/Checkbox";
+import { useChecklist } from "react-checklist";
+import Checkbox from '@mui/material/Checkbox';
 
 const style = {
     position: "absolute",
@@ -203,12 +203,12 @@ function MealRecipes() {
     //     setMR([...MRData]);
     // }
 
-    // const { handleCheck, isCheckedAll, checkedItems } = useChecklist(MRData, {
-    //     key: "id",
-    //     keyType: "string",
-    // });
-    // console.log(checkedItems);
-    // console.log([...checkedItems]);
+    const { handleCheck, isCheckedAll, checkedItems } = useChecklist(MRData, {
+        key: "id",
+        keyType: "string",
+    });
+    console.log(checkedItems);
+    console.log([...checkedItems]);
 
     return (
         <>
@@ -441,7 +441,7 @@ function MealRecipes() {
                         </Grid>
                         <Grid item xs={4}></Grid>
                         <Grid item xs={4} textAlign="right">
-                            {/* <Checkbox
+                            <Checkbox
                                 type="checkbox"
                                 onChange={handleCheck}
                                 checked={isCheckedAll}
@@ -451,7 +451,7 @@ function MealRecipes() {
                                         color: orange[600],
                                     },
                                 }}
-                            /> */}
+                            />
                         </Grid>
                     </Grid>
 
@@ -471,14 +471,17 @@ function MealRecipes() {
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} textAlign="right">
-                                <SearchRoundedIcon onClick={handleOpen2} />
-                                {/* <input
+                                <SearchRoundedIcon onClick={handleOpen2}/>
+                                {/* <label class="input"> */}
+                                <input
                                     type="checkbox"
                                     data-key={MRData.id}
                                     onChange={handleCheck}
                                     checked={checkedItems.has(MRData.id)}
                                     style={{margin:"15px", backgroundColor:"orange", fontSize:"30px"}}
-                                /> */}
+                                    // class="input"
+                                />
+                                {/* </label> */}
                             </Grid>
                         </Grid>
                     ))}
