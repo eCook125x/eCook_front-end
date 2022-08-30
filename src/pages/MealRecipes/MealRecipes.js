@@ -31,6 +31,9 @@ import api from "../../axios/api";
 import { useNavigate } from "react-router-dom";
 
 import Chip from "@mui/material/Chip";
+import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
+import { useChecklist } from "react-checklist";
+import Checkbox from '@mui/material/Checkbox';
 
 const style = {
     position: "absolute",
@@ -84,20 +87,6 @@ function MealRecipes() {
         setImage(btoa(binaryString));
     };
 
-    const [selectedValue, setSelectedValue] = React.useState("a");
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    };
-
-    const controlProps = (item) => ({
-        checked: selectedValue === item,
-        onChange: handleChange,
-        value: item,
-        name: "color-radio-button-demo",
-        inputProps: { "aria-label": item },
-    });
-
     const [value, setValue] = React.useState(0);
 
     //api
@@ -124,8 +113,12 @@ function MealRecipes() {
         api.get(`/api/cookbook/meal/ingredient/${sweetAndSavoryDataId}`, {
             headers: { "Content-Type": "application/json" },
         }).then((res) => {
-            setMR(res.data);
-            // console.log(res.data);
+            const newData = res.data.reduce((map, current) => {
+                return [...map, { ...current, checkedId: "1" }];
+            }, []);
+            setMR(newData);
+            // setMR(res.data);
+            console.log(newData);
         });
 
         api.get(`/api/cookbook/meal/step/${sweetAndSavoryDataId}`, {
@@ -203,6 +196,19 @@ function MealRecipes() {
                 // localStorage.setItem("u_id", SRData.u_id);
             });
     }
+
+    // function handleClickRadio(index, value) {
+    //     MRData[index].checked = !value;
+    //     console.log(index+value)
+    //     setMR([...MRData]);
+    // }
+
+    const { handleCheck, isCheckedAll, checkedItems } = useChecklist(MRData, {
+        key: "id",
+        keyType: "string",
+    });
+    console.log(checkedItems);
+    console.log([...checkedItems]);
 
     return (
         <>
@@ -326,14 +332,26 @@ function MealRecipes() {
                                 image={Image}
                                 alt=""
                             /> */}
-                            <img src={`data:image/png;base64,${image}`} alt="上傳圖片" width={200} height={150}></img>
+                            {image !== null ? (
+                                <img
+                                    src={`data:image/png;base64,${image}`}
+                                    alt="上傳圖片"
+                                    width={200}
+                                    height={150}
+                                ></img>
+                            ) : (
+                                ""
+                            )}
                         </Grid>
                     </Grid>
+                    <h5>
+                        <ErrorRoundedIcon className="orange" /> 需要拍攝照片才能上傳自我學習記錄哦！
+                    </h5>
 
                     <Grid container spacing={3}>
                         <Grid item xs={4}>
                             <Box textAlign="left">
-                                <Button variant="outlined" className="grey">
+                                <Button variant="outlined" className="grey" onClick={handleClose}>
                                     取消
                                 </Button>
                             </Box>
@@ -423,8 +441,10 @@ function MealRecipes() {
                         </Grid>
                         <Grid item xs={4}></Grid>
                         <Grid item xs={4} textAlign="right">
-                            <Radio
-                                {...controlProps("e")}
+                            <Checkbox
+                                type="checkbox"
+                                onChange={handleCheck}
+                                checked={isCheckedAll}
                                 sx={{
                                     color: orange[800],
                                     "&.Mui-checked": {
@@ -438,8 +458,8 @@ function MealRecipes() {
                     {/* <Typography sx={{ mb: 0 }} variant="h6">
                         餅乾底
                     </Typography> */}
-                    {MRData.map((MRData) => (
-                        <Grid container spacing={3} sx={{ my: 1, mb: 0, pl: 0 }} className="border-b">
+                    {MRData.map((MRData, index) => (
+                        <Grid container spacing={3} sx={{ my: 1, mb: 0, pl: 0 }} className="border-b" key={index}>
                             <Grid item xs={4}>
                                 <Typography sx={{ mb: 2 }} variant="body1">
                                     {MRData.name}
@@ -451,16 +471,17 @@ function MealRecipes() {
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} textAlign="right">
-                                <SearchRoundedIcon onClick={handleOpen2} />
-                                <Radio
-                                    {...controlProps("e")}
-                                    sx={{
-                                        color: orange[800],
-                                        "&.Mui-checked": {
-                                            color: orange[600],
-                                        },
-                                    }}
+                                <SearchRoundedIcon onClick={handleOpen2}/>
+                                {/* <label class="input"> */}
+                                <input
+                                    type="checkbox"
+                                    data-key={MRData.id}
+                                    onChange={handleCheck}
+                                    checked={checkedItems.has(MRData.id)}
+                                    style={{margin:"15px", backgroundColor:"orange", fontSize:"30px"}}
+                                    // class="input"
                                 />
+                                {/* </label> */}
                             </Grid>
                         </Grid>
                     ))}
