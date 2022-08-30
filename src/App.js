@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import About from "./pages/About/About";
 import Login from "./pages/Login/login";
 import Link from "./pages/Link/link";
 import Cookbook from "./pages/Cookbook/Cookbook";
@@ -27,9 +26,6 @@ function App() {
             </Routes>
             <Routes>
                 <Route path="/link" element={<Link />} />
-            </Routes>
-            <Routes>
-                <Route path="/about" element={<About />} />
             </Routes>
             <Routes>
                 <Route path="/cookbook" element={<Cookbook />} />
