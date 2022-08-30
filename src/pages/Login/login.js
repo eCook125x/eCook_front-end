@@ -23,7 +23,8 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../axios/api";
-import { Modal } from "antd";
+import Modal from "@mui/material/Modal";
+import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
 
 function Login() {
     // const [values, setValues] = React.useState({
@@ -52,16 +53,8 @@ function Login() {
     const [UserId, setUserId] = useState("");
     const [Password, setPassword] = useState("");
     const [Message, setMessage] = useState("");
-    const [isModalVisible, setIsModalVisible] = useState(false);
     const navigate = useNavigate();
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
-
+    const [open, setOpen] = React.useState(false);
     async function handleApi() {
         await api
             .post("/api/user/userLogin", {
@@ -78,16 +71,16 @@ function Login() {
                     localStorage.setItem("userImg", data.img);
                 } else if (data.message === "帳號或密碼錯誤") {
                     setMessage("帳號或密碼錯誤");
-                    setIsModalVisible(true);
+                    setOpen(true);
                 } else {
                     setMessage("密碼錯誤");
-                    setIsModalVisible(true);
+                    setOpen(true);
                     console.log(data);
                 }
             })
             .catch((error) => {
                 setMessage("伺服器出錯 工程師正在修復中");
-                setIsModalVisible(true);
+                setOpen(true);
             });
     }
     // useEffect(()=>{
@@ -96,17 +89,54 @@ function Login() {
     //     }
     // })
 
+    // const handleOpen = () => {
+    //     setOpen(true);
+    // };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        bgcolor: "#FFF",
+        border: "none",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        pt: 2,
+        px: 4,
+        pb: 3,
+
+        borderRadius: 10,
+        mt: 4,
+    };
+
     return (
         <>
             <Modal
-                title="請重新登錄"
-                visible={isModalVisible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                okText="確認"
-                cancelText="取消"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
             >
-                <p>{Message}</p>
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        警告訊息
+                    </Typography>
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                <ErrorRoundedIcon className="orange" /> {Message}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={6} textAlign="right">
+                            <Button onClick={handleClose} variant="contained" className="bg-orange">
+                                確認
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Modal>
 
             <Grid
