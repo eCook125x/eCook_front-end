@@ -221,11 +221,11 @@ function Login() {
                     登入
                 </Button>
 
-                <Typography variant="caption" display="block" gutterBottom align="center">
+                {/* <Typography variant="caption" display="block" gutterBottom align="center">
                     By continuing, you agree to our
                     <br />
                     Terms of Service · Privacy Policy · Content Policy
-                </Typography>
+                </Typography> */}
             </Grid>
         </>
     );
