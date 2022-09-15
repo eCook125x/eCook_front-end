@@ -80,7 +80,7 @@ function PersonalLRDirections() {
                 <Box textAlign="left">
                     <Grid container spacing={2} direction="row">
                         <Grid item xs={2}>
-                            <p>協作者</p>
+                            <p className="font-normal">協作者</p>
                         </Grid>
 
                         <Grid item xs={2}>
@@ -115,7 +115,7 @@ function PersonalLRDirections() {
                     </Grid> */}
                 </Grid>
 
-                <Typography sx={{ mb: 0 }} variant="h6" className="orange">
+                <Typography sx={{ mb: 0 }} variant="h6" className="font-large-orange">
                     我的學習紀錄
                 </Typography>
                 <ListItem alignItems="flex-start" sx={{ mb: 4, py: 2 }} className="" backgroundColor="#FFF">
@@ -123,6 +123,7 @@ function PersonalLRDirections() {
                         <Avatar alt="Remy Sharp" src={userImg} />
                     </ListItemAvatar>
                     <ListItemText
+                        className="font-normal"
                         primary={username + "的自我評分"}
                         secondary={
                             <React.Fragment>
@@ -139,6 +140,7 @@ function PersonalLRDirections() {
                                     component="span"
                                     variant="body2"
                                     color="text.primary"
+                                    className="font-normal"
                                 >
                                     {text}
                                 </Typography>
@@ -162,6 +164,7 @@ function PersonalLRDirections() {
                             secondary={
                                 <React.Fragment>
                                     <Typography
+                                        className="font-normal"
                                         sx={{ display: "inline" }}
                                         component="span"
                                         variant="body2"
@@ -190,6 +193,7 @@ function PersonalLRDirections() {
                             secondary={
                                 <React.Fragment>
                                     <Typography
+                                        className="font-normal"
                                         sx={{ display: "inline" }}
                                         component="span"
                                         variant="body2"

@@ -116,7 +116,7 @@ function TeamLRDirections() {
                 <Box textAlign="left">
                     <Grid container spacing={2} direction="row">
                         <Grid item xs={2} sx={{ px: 2, m: 0 }}>
-                            <p>上傳者</p>
+                            <p className="font-normal">上傳者</p>
                         </Grid>
                         <Grid item xs={2}>
                             <Button variant="contained" sx={{ mb: 2 }} className="upload" fullWidth>
@@ -124,7 +124,7 @@ function TeamLRDirections() {
                             </Button>
                         </Grid>
                         <Grid item xs={2}>
-                            <p>協作者</p>
+                            <p className="font-normal">協作者</p>
                         </Grid>
 
                         <Grid item xs={2}>
@@ -157,7 +157,7 @@ function TeamLRDirections() {
                     </Grid> */}
                 </Grid>
 
-                <Typography sx={{ mb: 0 }} variant="h6" className="orange">
+                <Typography sx={{ mb: 0 }} variant="h6" className="font-normal-orange">
                     {username}的學習紀錄
                 </Typography>
                 {SRData.map((SRData) => (
@@ -166,6 +166,7 @@ function TeamLRDirections() {
                             <Avatar alt="Remy Sharp" src={SRData.u_img} />
                         </ListItemAvatar>
                         <ListItemText
+                            className="font-normal"
                             primary={SRData.username + "的自我評分"}
                             secondary={
                                 <React.Fragment>
@@ -178,6 +179,7 @@ function TeamLRDirections() {
                                     />
                                     <br />
                                     <Typography
+                                        className="font-normal"
                                         sx={{ display: "inline" }}
                                         component="span"
                                         variant="body2"
@@ -206,6 +208,7 @@ function TeamLRDirections() {
                             secondary={
                                 <React.Fragment>
                                     <Typography
+                                        className="font-normal"
                                         sx={{ display: "inline" }}
                                         component="span"
                                         variant="body2"
@@ -234,6 +237,7 @@ function TeamLRDirections() {
                             secondary={
                                 <React.Fragment>
                                     <Typography
+                                        className="font-normal"
                                         sx={{ display: "inline" }}
                                         component="span"
                                         variant="body2"
@@ -298,7 +302,7 @@ function TeamLRDirections() {
                 <Box textAlign="right" sx={{ mb: 4 }}>
                     <Button
                         variant="contained"
-                        className=""
+                        className="font-normal"
                         style={{ backgroundColor: "#FF8527" }}
                         onClick={handleApi}
                         type="submit"

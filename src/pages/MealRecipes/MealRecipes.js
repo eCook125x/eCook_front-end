@@ -10,10 +10,10 @@ import Grid from "@mui/material/Grid";
 
 import image14 from "../../images/MealRecipes/14.png";
 
-// import ListItem from "@mui/material/ListItem";
-// import ListItemText from "@mui/material/ListItemText";
-// import ListItemAvatar from "@mui/material/ListItemAvatar";
-// import Avatar from "@mui/material/Avatar";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
 import Modal from "@mui/material/Modal";
 import Rating from "@mui/material/Rating";
 import Radio from "@mui/material/Radio";
@@ -24,7 +24,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
 import { orange } from "@mui/material/colors";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+// import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
 import { useState, useEffect } from "react";
 import api from "../../axios/api";
@@ -33,7 +33,10 @@ import { useNavigate } from "react-router-dom";
 import Chip from "@mui/material/Chip";
 import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
 import { useChecklist } from "react-checklist";
-import Checkbox from '@mui/material/Checkbox';
+import Checkbox from "@mui/material/Checkbox";
+
+// import { Player } from "video-react";
+import LoadingScreen from "react-loading-screen";
 
 const style = {
     position: "absolute",
@@ -53,6 +56,7 @@ const style = {
 };
 
 function MealRecipes() {
+    const [loading,setLoading] = useState(false)
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -62,9 +66,10 @@ function MealRecipes() {
     };
 
     const [open2, setOpen2] = React.useState(false);
-    const handleOpen2 = () => {
-        setOpen2(true);
-    };
+    // function handleOpen2() {
+    //     // window.sessionStorage.setItem("MRDataImg", img);
+    //     setOpen2(true);
+    // }
     const handleClose2 = () => {
         setOpen2(false);
     };
@@ -95,18 +100,23 @@ function MealRecipes() {
     const [UserData, setUser] = useState([]);
     const [MealData, setMeal] = useState([]);
     const top100Films = UserData;
-    // console.log(top100Films)
+    console.log(StepData);
 
     const [sweetAndSavoryDataName, setsweetAndSavoryDataName] = useState([]);
     const [sweetAndSavoryDataImg, setsweetAndSavoryDataImg] = useState([]);
     const [cookbookName, setCookbookName] = useState([]);
 
+    // const [MRDataImg, setMRDataImg] = useState([]);
+    // const [userImg, setuserImg] = useState([]);
+
     useEffect(() => {
         const sweetAndSavoryDataId = window.sessionStorage.getItem("sweetAndSavoryDataId");
         setsweetAndSavoryDataName(window.sessionStorage.getItem("sweetAndSavoryDataName"));
         setsweetAndSavoryDataImg(window.sessionStorage.getItem("sweetAndSavoryDataImg"));
+        // setMRDataImg(window.sessionStorage.getItem("MRDataImg"));
 
         setUId(window.localStorage.getItem("id"));
+        // setuserImg(window.localStorage.getItem("userImg"));
         setCuisineCategory(window.sessionStorage.getItem("cookbookName"));
         setCookbookName(window.sessionStorage.getItem("sweetAndSavoryDataName"));
 
@@ -160,6 +170,7 @@ function MealRecipes() {
     const currentDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
 
     async function handleApi() {
+        setLoading(true);
         console.log("協作者 : " + str);
         console.log("評分星星 : " + Star);
         console.log("學習紀錄文字 : " + Text);
@@ -183,25 +194,11 @@ function MealRecipes() {
                 time: currentDateTime,
             })
             .then((res) => {
+                setLoading(false);
                 navigate("/complete");
                 console.log(res.data);
-                // const SRData = res.data;
-                // localStorage.setItem("collaborator", SRData.collaborator);
-                // localStorage.setItem("star", SRData.star);
-                // localStorage.setItem("text", SRData.text);
-                // localStorage.setItem("cuisineCategory", SRData.cuisineCategory);
-                // localStorage.setItem("cuisineName", SRData.cuisineName);
-                // localStorage.setItem("cuisineItem", SRData.cuisineItem);
-                // localStorage.setItem("img", SRData.img);
-                // localStorage.setItem("u_id", SRData.u_id);
             });
     }
-
-    // function handleClickRadio(index, value) {
-    //     MRData[index].checked = !value;
-    //     console.log(index+value)
-    //     setMR([...MRData]);
-    // }
 
     const { handleCheck, isCheckedAll, checkedItems } = useChecklist(MRData, {
         key: "id",
@@ -209,6 +206,17 @@ function MealRecipes() {
     });
     console.log(checkedItems);
     console.log([...checkedItems]);
+
+    function scrollToAnchor(anchorName) {
+        if (anchorName) {
+            let anchorElement = document.getElementById(anchorName);
+            if (anchorElement) {
+                anchorElement.scrollIntoView();
+            }
+        }
+    }
+
+    // console.log(MRDataImg)
 
     return (
         <>
@@ -234,12 +242,14 @@ function MealRecipes() {
                                 我今天完成什麼料理品項
                             </h5>
                             <FormControlLabel
+                                className="font-normal"
                                 value="餅乾底"
                                 control={<Radio />}
                                 label="餅乾底"
                                 onChange={(e) => setCuisineItem(e.target.value)}
                             />
                             <FormControlLabel
+                                className="font-normal"
                                 value="炒料"
                                 control={<Radio />}
                                 label="炒料"
@@ -253,6 +263,7 @@ function MealRecipes() {
                     </h5>
 
                     <Autocomplete
+                        className="font-normal"
                         multiple
                         value={inputValue}
                         onChange={(e, value) => {
@@ -274,6 +285,7 @@ function MealRecipes() {
                     />
 
                     <Rating
+                        sx={{ mt: 2 }}
                         name="simple-controlled"
                         value={value}
                         onChange={(event, newValue) => {
@@ -291,47 +303,8 @@ function MealRecipes() {
                     />
 
                     <Grid container spacing={3} sx={{ my: 1, mb: 4 }}>
-                        {/* <Grid item xs={4}>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={image11}
-                                alt="定食套餐"
-                            />
-                        </Grid>
                         <Grid item xs={4}>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={image12}
-                                alt="定食套餐"
-                            />
-                        </Grid> */}
-                        <Grid item xs={4}>
-                            {/* <input
-                                accept="image/*"
-                                style={{ display: 'none' }}
-                                id="raised-button-file"
-                                multiple
-                                type="file"
-                            />
-                            <label htmlFor="raised-button-file">
-                            <Button variant="raised" component="span">
-                                <CardMedia
-                                    component="img"
-                                    height="auto"
-                                    image={image13}
-                                    alt="定食套餐"
-                                />
-                            </Button>
-                            </label>  */}
                             <input type="file" onChange={onImageChange} className="filetype" accept=".jepg,.png,.jpg" />
-                            {/* <CardMedia
-                                component="img"
-                                height="auto"
-                                image={Image}
-                                alt=""
-                            /> */}
                             {image !== null ? (
                                 <img
                                     src={`data:image/png;base64,${image}`}
@@ -348,7 +321,7 @@ function MealRecipes() {
                         <ErrorRoundedIcon className="orange" /> 需要拍攝照片才能上傳自我學習記錄哦！
                     </h5>
 
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} sx={{ mt: 1 }}>
                         <Grid item xs={4}>
                             <Box textAlign="left">
                                 <Button variant="outlined" className="grey" onClick={handleClose}>
@@ -359,9 +332,22 @@ function MealRecipes() {
                         <Grid item xs={4}></Grid>
                         <Grid item xs={4}>
                             <Box textAlign="right">
+                                { loading === true ? (
+                                    <LoadingScreen
+                                    loading={true}
+                                    bgColor="#f1f1f1"
+                                    spinnerColor="#9ee5f8"
+                                    textColor="#676767"
+                                    logoSrc=""
+                                    text="等待上傳中，請稍候"
+                                >
+                                    <div>Loadable content</div>
+                                </LoadingScreen>
+                                ):('') }
+                                
                                 <Button
                                     variant="contained"
-                                    className=""
+                                    className="font-normal"
                                     style={{ backgroundColor: "#FF8527" }}
                                     // href="/complete"
                                     type="submit"
@@ -403,17 +389,25 @@ function MealRecipes() {
                 >
                     {sweetAndSavoryDataName}
                 </Typography>
-
                 <CardMedia component="img" height="auto" image={sweetAndSavoryDataImg} alt={sweetAndSavoryDataName} />
-
                 <Grid container spacing={3} sx={{ my: 1, mb: 4 }}>
                     <Grid item xs={4}>
-                        <Button variant="contained" className="full-width" style={{ backgroundColor: "#FF8527" }}>
+                        <Button
+                            variant="contained"
+                            className="full-width"
+                            style={{ backgroundColor: "#FF8527" }}
+                            onClick={() => scrollToAnchor("food")}
+                        >
                             食材備置
                         </Button>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Button variant="contained" className="full-width" style={{ backgroundColor: "#FF8527" }}>
+                    <Grid item xs={4} id="food">
+                        <Button
+                            variant="contained"
+                            className="full-width"
+                            style={{ backgroundColor: "#FF8527" }}
+                            onClick={() => scrollToAnchor("screens")}
+                        >
                             製作步驟
                         </Button>
                     </Grid>
@@ -431,11 +425,10 @@ function MealRecipes() {
                         </Button>
                     </Grid>
                 </Grid>
-
                 <Box>
                     <Grid container spacing={3} sx={{ my: 1, mb: 2, pl: 0 }}>
                         <Grid item xs={4}>
-                            <Typography sx={{ mb: 0 }} variant="h6">
+                            <Typography sx={{ mb: 0 }} className="font-large">
                                 已全部取得
                             </Typography>
                         </Grid>
@@ -461,118 +454,39 @@ function MealRecipes() {
                     {MRData.map((MRData, index) => (
                         <Grid container spacing={3} sx={{ my: 1, mb: 0, pl: 0 }} className="border-b" key={index}>
                             <Grid item xs={4}>
-                                <Typography sx={{ mb: 2 }} variant="body1">
+                                <Typography sx={{ mb: 2 }} className="font-normal">
                                     {MRData.name}
                                 </Typography>
                             </Grid>
                             <Grid item xs={4}>
-                                <Typography sx={{ mb: 2 }} variant="body1">
+                                <Typography sx={{ mb: 2 }} className="font-normal">
                                     {MRData.unit}
                                 </Typography>
                             </Grid>
                             <Grid item xs={4} textAlign="right">
-                                <SearchRoundedIcon onClick={handleOpen2}/>
+                                {/* <SearchRoundedIcon onClick={handleOpen2} /> */}
                                 {/* <label class="input"> */}
                                 <input
                                     type="checkbox"
                                     data-key={MRData.id}
                                     onChange={handleCheck}
                                     checked={checkedItems.has(MRData.id)}
-                                    style={{margin:"15px", backgroundColor:"orange", fontSize:"30px"}}
+                                    style={{ margin: "15px", backgroundColor: "orange", fontSize: "30px" }}
                                     // class="input"
                                 />
                                 {/* </label> */}
                             </Grid>
                         </Grid>
                     ))}
-
-                    {/* <Typography sx={{ mb: 0 }} variant="h6">
-                        藍莓果醬
-                    </Typography>
-                    <Grid container spacing={3} sx={{ my: 1, mb: 0, pl: 0 }} className="border-b">
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                藍莓
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                240克
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4} textAlign="right">
-                            <SearchRoundedIcon />
-                            <Radio
-                                {...controlProps("e")}
-                                sx={{
-                                    color: orange[800],
-                                    "&.Mui-checked": {
-                                        color: orange[600],
-                                    },
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3} sx={{ my: 0, mb: 0, pl: 0 }} className="border-b">
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                細砂糖
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                40克
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4} textAlign="right">
-                            <SearchRoundedIcon />
-                            <Radio
-                                {...controlProps("e")}
-                                sx={{
-                                    color: orange[800],
-                                    "&.Mui-checked": {
-                                        color: orange[600],
-                                    },
-                                }}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3} sx={{ my: 0, mb: 4, pl: 0 }} className="border-b">
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                檸檬汁
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Typography sx={{ mb: 2 }} variant="body1">
-                                20克
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4} textAlign="right">
-                            <SearchRoundedIcon />
-                            <Radio
-                                {...controlProps("e")}
-                                sx={{
-                                    color: orange[800],
-                                    "&.Mui-checked": {
-                                        color: orange[600],
-                                    },
-                                }}
-                            />
-                        </Grid>
-                    </Grid> */}
                 </Box>
-
-                <Box textAlign="center" sx={{ my: 4 }}>
-                    <Button variant="contained" className="" style={{ backgroundColor: "#FF8527" }}>
+                {/* <Box textAlign="center" sx={{ my: 4 }}>
+                    <Button variant="contained" className="font-normal" style={{ backgroundColor: "#FF8527" }}>
                         按這裡進行下一步
                     </Button>
-                </Box>
-
-                <Typography sx={{ mb: 2 }} variant="h6">
+                </Box> */}
+                <Typography sx={{ mb: 2, mt: 5, pt: 2 }} className="font-large">
                     觀賞完整步驟
                 </Typography>
-
                 {MealData.map((MealData) => (
                     <iframe
                         width="1038"
@@ -584,11 +498,9 @@ function MealRecipes() {
                         allowfullscreen
                     ></iframe>
                 ))}
-
-                <Typography sx={{ my: 2 }} variant="h6">
+                <Typography sx={{ mb: 2, mt: 5, pt: 2 }} className="font-large" id="screens">
                     步驟解說
                 </Typography>
-
                 {/* <Grid container spacing={3} sx={{ mb: 2 }}>
                     <Grid item xs={6}>
                         <CardMedia component="img" height="auto" image={image03} alt="步驟解說1" zoom="1" />
@@ -624,97 +536,72 @@ function MealRecipes() {
                         }
                     />
                 </ListItem> */}
+                {StepData.map((StepData, index) => (
+                    <div>
+                        <Grid container spacing={3} sx={{ mb: 5 }}>
+                            <Grid item xs={6}>
+                                {StepData.video === "" ? (
+                                    <CardMedia component="img" height="auto" image={StepData.img} alt={index} />
+                                ) : (
+                                    // <Player
+                                    //     playsInline
+                                    //     poster={StepData.img}
+                                    //     src={StepData.video}
+                                    // />
+                                    <iframe
+                                        width="538"
+                                        height="575"
+                                        src={StepData.video}
+                                        title={index + 1}
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                )}
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography className="step" variant="h6" sx={{ py: 2 }}>
+                                    步驟 {index + 1}
+                                </Typography>
+                                <Typography className="font-large" gutterBottom sx={{ py: 2 }}>
+                                    {StepData.text}
+                                </Typography>
+                            </Grid>
+                        </Grid>
 
-                {StepData.map((StepData) => (
-                    <Grid container spacing={3} sx={{ mb: 4 }}>
-                        <Grid item xs={6}>
-                            <CardMedia component="img" height="auto" image={StepData.img} alt={StepData.title} />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                                {StepData.title}
-                            </Typography>
-                            <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                                {StepData.text}
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                        {StepData.adminText === "" ? (
+                            ""
+                        ) : (
+                            <ListItem alignItems="flex-start" sx={{ mb: 5, py: 2 }} className="list">
+                                <ListItemAvatar>
+                                    <Avatar alt="Remy Sharp" src={StepData.adminImg} />
+                                </ListItemAvatar>
+                                <ListItemText
+                                    className="font-normal"
+                                    primary="小當家"
+                                    secondary={
+                                        <React.Fragment>
+                                            <Typography
+                                                sx={{ display: "inline" }}
+                                                component="span"
+                                                className="font-normal"
+                                                color="text.primary"
+                                            >
+                                                {StepData.adminText}
+                                            </Typography>
+                                            {"  - " + StepData.adminTime}
+                                        </React.Fragment>
+                                    }
+                                />
+                            </ListItem>
+                        )}
+                    </div>
                 ))}
-
-                {/* <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={6}>
-                        <CardMedia component="img" height="auto" image={image05} alt="步驟解說3" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                            步驟 3
-                        </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                            先將南瓜切薄片平鋪在塔殼底部，儘量底蓋滿。（1模100克）
-                        </Typography>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={6}>
-                        <CardMedia component="img" height="auto" image={image06} alt="步驟解說4" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                            步驟 4
-                        </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                            第一份先平分倒入蛋糕模內，成為第一層。抹平稍微敲出空氣，冰冷凍。
-                        </Typography>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={6}>
-                        <CardMedia component="img" height="auto" image={image07} alt="步驟解說5" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                            步驟 5
-                        </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                            第二份加入優格60克
-                        </Typography>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={6}>
-                        <CardMedia component="img" height="auto" image={image08} alt="步驟解說6" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                            步驟 6
-                        </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                            鮮奶油80克乾性打發，加入奶油起司內餡，用刮刀由下往上拌勻。
-                        </Typography>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={6}>
-                        <CardMedia component="img" height="auto" image={image09} alt="步驟解說7" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Typography className="step" variant="h6" sx={{ py: 2 }}>
-                            步驟 7
-                        </Typography>
-                        <Typography variant="subtitle1" gutterBottom sx={{ py: 2 }}>
-                            煮好的藍莓果醬再加入，一樣用刮刀由下往上拌勻。
-                        </Typography>
-                    </Grid>
-                </Grid> */}
 
                 <Box textAlign="center" sx={{ mb: 4 }}>
                     <Button
                         variant="contained"
-                        className=""
+                        className="font-normal"
                         style={{ backgroundColor: "#FF8527" }}
                         onClick={handleOpen}
                     >

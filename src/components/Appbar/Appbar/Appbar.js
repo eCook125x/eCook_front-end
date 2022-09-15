@@ -82,7 +82,7 @@ const Appbar = () => {
         <AppBar position="static" className="bg-orange" enableColorOnDark style={{ position: "fixed", zIndex: 1500 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <ArrowBackIosNewRoundedIcon />
+                    <ArrowBackIosNewRoundedIcon onClick={handleBack}/>
                     <Button onClick={handleBack} className="ecook" sx={{ p: 0 }} >返回</Button>
 
                     {/* <Typography variant="h5" gutterBottom component="div" align="center" sx={{ fontWeight: 'bold', m: 1 }} href="/link">

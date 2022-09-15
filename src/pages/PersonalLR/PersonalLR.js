@@ -153,6 +153,7 @@ function PersonalLR() {
                             </CardContent>
                             <CardActions className="center">
                                 <Button
+                                    className="font-normal"
                                     variant="contained"
                                     style={{ backgroundColor: "#FF8527" }}
                                     onClick={() =>

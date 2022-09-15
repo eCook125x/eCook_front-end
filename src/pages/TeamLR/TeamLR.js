@@ -69,159 +69,77 @@ function TeamLR() {
             >
                 {TLRData.map((TLRData) =>
                     TLRData.u_id.toString() !== UId ? (
-                        <div>{TLRData.u_id}</div>,
-                        <Grid item xs={4}>
-                            <Card
-                                sx={{ textAlign: "center", p: 1 }}
-                                elevation={0}
-                                className="card-teamLR"
-                                justifyContent="center"
-                                alignItems="center"
-                            >
-                                <CardContent>
-                                    <CardMedia
-                                        component="img"
-                                        height="auto"
-                                        image={TLRData.img}
-                                        alt={TLRData.cuisineCategory}
-                                    />
-                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                        {TLRData.time}
-                                    </Typography>
+                        ((<div>{TLRData.u_id}</div>),
+                        (
+                            <Grid item xs={4}>
+                                <Card
+                                    sx={{ textAlign: "center", p: 1 }}
+                                    elevation={0}
+                                    className="card-teamLR"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <CardContent>
+                                        <CardMedia
+                                            component="img"
+                                            height="auto"
+                                            image={TLRData.img}
+                                            alt={TLRData.cuisineCategory}
+                                        />
+                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                            {TLRData.time}
+                                        </Typography>
 
-                                    <Typography variant="h4" component="div" className="step" sx={{ py: 2 }}>
-                                        {TLRData.cuisineCategory}
-                                    </Typography>
-                                    <Typography variant="h5" sx={{ py: 2 }}>
-                                        {TLRData.cuisineItem}
-                                    </Typography>
+                                        <Typography variant="h4" component="div" className="step" sx={{ py: 2 }}>
+                                            {TLRData.cuisineCategory}
+                                        </Typography>
+                                        <Typography variant="h5" sx={{ py: 2 }}>
+                                            {TLRData.cuisineItem}
+                                        </Typography>
 
-                                    <Box textAlign="left">
-                                        <p>上傳者</p>
-                                        <Button variant="contained" sx={{ mb: 2 }} className="upload">
-                                            {TLRData.username}
-                                        </Button>
-                                        <p>協作者</p>
-                                        {/* <Grid container spacing={2} direction="row">
+                                        <Box textAlign="left">
+                                            <p className="font-normal">上傳者</p>
+                                            <Button variant="contained" sx={{ mb: 2 }} className="upload">
+                                                {TLRData.username}
+                                            </Button>
+                                            <p className="font-normal">協作者</p>
+                                            {/* <Grid container spacing={2} direction="row">
                                         <Grid item xs={4}><Button className="help" variant="contained">{TLRData.collaborator}</Button></Grid>
                                     </Grid> */}
-                                        <Grid containerdirection="row">
-                                            <Grid>
-                                                <Button className="help" variant="contained">
-                                                    {TLRData.collaborator}
-                                                </Button>
+                                            <Grid containerdirection="row">
+                                                <Grid>
+                                                    <Button className="help" variant="contained">
+                                                        {TLRData.collaborator}
+                                                    </Button>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </Box>
-                                </CardContent>
-                                <CardActions className="center">
-                                    <Button
-                                        variant="contained"
-                                        style={{ backgroundColor: "#FF8527" }}
-                                        onClick={() =>
-                                            handleClickCardAction(
-                                                TLRData.collaborator,
-                                                TLRData.cuisineCategory,
-                                                TLRData.img,
-                                                TLRData.username,
-                                                TLRData.id
-                                            )
-                                        }
-                                    >
-                                        查看更多
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
+                                        </Box>
+                                    </CardContent>
+                                    <CardActions className="center">
+                                        <Button
+                                            className="font-normal"
+                                            variant="contained"
+                                            style={{ backgroundColor: "#FF8527" }}
+                                            onClick={() =>
+                                                handleClickCardAction(
+                                                    TLRData.collaborator,
+                                                    TLRData.cuisineCategory,
+                                                    TLRData.img,
+                                                    TLRData.username,
+                                                    TLRData.id
+                                                )
+                                            }
+                                        >
+                                            查看更多
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))
                     ) : (
                         <div></div>
                     )
                 )}
-
-                {/* <Grid item xs={4}>
-                    <Card 
-                        sx={{ textAlign: 'center', p:1 }} 
-                        elevation={0} 
-                        className="card-teamLR" 
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <CardContent>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={image02}
-                                alt="原味提拉米蘇"
-                            />
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            2022年5月4日 10:00
-                            </Typography>
-
-                            <Typography variant="h4" component="div" className="step" sx={{ py:2 }}>
-                            原味提拉米蘇
-                            </Typography>
-                            <Typography variant="h5" sx={{ py:2 }}>
-                            手指餅乾
-                            </Typography>
-
-                            <Box textAlign='left'>
-                                <p>上傳者</p>
-                                <Button variant="contained" sx={{ mb:2 }} className="upload">若雯</Button>
-                                <p>協作者</p>
-                                <Grid container spacing={2} direction="row">
-                                    <Grid item xs={4}><Button className="help" variant="contained">秀鳳</Button></Grid>
-                                    <Grid item xs={4}><Button className="help" variant="contained">惠玲</Button></Grid>
-                                    <Grid item xs={4}><Button className="help" variant="contained">碧如</Button></Grid>
-                                </Grid>
-                            </Box>
-                        </CardContent>
-                        <CardActions className="center">
-                            <Button variant="contained" style={{ backgroundColor: '#FF8527' }}>查看更多</Button>
-                        </CardActions>
-                    </Card>     
-                </Grid>
-                <Grid item xs={4}>
-                    <Card 
-                        sx={{ textAlign: 'center', p:1 }} 
-                        elevation={0} 
-                        className="card-teamLR" 
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        <CardContent>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={image03}
-                                alt="味噌藍莓乳酪"
-                            />
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            2022年5月4日 10:00
-                            </Typography>
-
-                            <Typography variant="h4" component="div" className="step" sx={{ py:2 }}>
-                            味噌藍莓乳酪
-                            </Typography>
-                            <Typography variant="h5" sx={{ py:2 }}>
-                            乳酪餡
-                            </Typography>
-
-                            <Box textAlign='left'>
-                                <p>上傳者</p>
-                                <Button variant="contained" sx={{ mb:2 }} className="upload">若雯</Button>
-                                <p>協作者</p>
-                                <Grid container spacing={2} direction="row">
-                                    <Grid item xs={4}><Button className="help" variant="contained">秀鳳</Button></Grid>
-                                    <Grid item xs={4}><Button className="help" variant="contained">惠玲</Button></Grid>
-                                    <Grid item xs={4}><Button className="help" variant="contained">碧如</Button></Grid>
-                                </Grid>
-                            </Box>
-                        </CardContent>
-                        <CardActions className="center">
-                            <Button variant="contained" style={{ backgroundColor: '#FF8527' }}>查看更多</Button>
-                        </CardActions>
-                    </Card>     
-                </Grid> */}
             </Grid>
         </>
     );

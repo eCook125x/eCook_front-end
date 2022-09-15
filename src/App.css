@@ -43,3 +43,23 @@
 .bg-orange {
   background-color: #FF8527 !important;
 }
+
+.font-normal {
+  font-size: 20px !important;
+}
+.font-small {
+  font-size: 16px !important;
+}
+.font-large {
+  font-size: 26px !important;
+}
+
+.font-normal-orange {
+  font-size: 20px !important;
+  color: #FF8527 !important;
+}
+
+.font-large-orange {
+  font-size: 24px !important;
+  color: #FF8527 !important;
+}

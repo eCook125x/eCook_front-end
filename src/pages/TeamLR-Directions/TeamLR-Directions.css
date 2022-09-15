@@ -1,3 +1,13 @@
 .text-red {
-    color: #FF2727 !important;
+    color: #ff2727 !important;
+}
+
+.font-normal-orange {
+    font-size: 20px !important;
+    color: #ff8527 !important;
+}
+
+.font-large-orange {
+    font-size: 24px !important;
+    color: #ff8527 !important;
 }
