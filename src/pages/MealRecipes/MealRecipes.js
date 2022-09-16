@@ -589,7 +589,7 @@ function MealRecipes() {
                                             >
                                                 {StepData.adminText}
                                             </Typography>
-                                            {"  - " + StepData.adminTime}
+                                            {/* {"  - " + StepData.adminTime} */}
                                         </React.Fragment>
                                     }
                                 />
