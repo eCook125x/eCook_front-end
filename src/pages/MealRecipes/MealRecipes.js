@@ -16,10 +16,10 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Modal from "@mui/material/Modal";
 import Rating from "@mui/material/Rating";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
+// import Radio from "@mui/material/Radio";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
@@ -162,7 +162,7 @@ function MealRecipes() {
     const [Text, setText] = useState("");
     const [CuisineCategory, setCuisineCategory] = useState("");
     // const [CuisineName, setCuisineName] = useState("");
-    const [CuisineItem, setCuisineItem] = useState("");
+    // const [CuisineItem, setCuisineItem] = useState("");
     // const [Img, setImg] = useState("");
     const [UId, setUId] = useState("");
     const navigate = useNavigate();
@@ -176,7 +176,7 @@ function MealRecipes() {
         console.log("學習紀錄文字 : " + Text);
         console.log("料理類別 : " + CuisineCategory);
         console.log("料理名稱 : " + cookbookName);
-        console.log("料理品項 : " + CuisineItem);
+        // console.log("料理品項 : " + CuisineItem);
         console.log("圖片 : " + image);
         console.log("上傳人員id : " + UId);
         console.log("上傳時間 : " + currentDateTime);
@@ -188,7 +188,7 @@ function MealRecipes() {
                 text: Text,
                 cuisineCategory: CuisineCategory,
                 cuisineName: cookbookName,
-                cuisineItem: CuisineItem,
+                // cuisineItem: CuisineItem,
                 img: image,
                 u_id: UId,
                 time: currentDateTime,
@@ -232,7 +232,7 @@ function MealRecipes() {
                         {sweetAndSavoryDataName}
                     </h3>
 
-                    <FormControl>
+                    {/* <FormControl>
                         <RadioGroup
                             row
                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -256,7 +256,7 @@ function MealRecipes() {
                                 onChange={(e) => setCuisineItem(e.target.value)}
                             />
                         </RadioGroup>
-                    </FormControl>
+                    </FormControl> */}
 
                     <h5 id="parent-modal-description" className="autocomplete">
                         協作者
@@ -549,8 +549,8 @@ function MealRecipes() {
                                     //     src={StepData.video}
                                     // />
                                     <iframe
-                                        width="538"
-                                        height="575"
+                                        width="450"
+                                        height="500"
                                         src={StepData.video}
                                         title={index + 1}
                                         frameborder="0"
